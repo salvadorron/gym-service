@@ -27,7 +27,7 @@ model User {
   last_name String
   age Int
   role Role? @relation(fields: [role_id], references: [id])
-  role_id Int @unique
+  role_id Int
   client Client?
   trainer Trainer?
   admin Admin?
@@ -35,9 +35,12 @@ model User {
 
 model Client {
   id Int @default(autoincrement()) @id
-  training_progress Int
+  training_progress Int @default(0)
   user User? @relation(fields: [user_id], references: [id])
   user_id Int @unique
+  plans Plan[]
+  payments Payment[]
+  attendances Attendance[]
 }
 
 model Trainer {
@@ -45,12 +48,105 @@ model Trainer {
   speciality String
   user User? @relation(fields: [user_id], references: [id])
   user_id Int @unique
+  certificates Certificate[]
+  plans Plan[]
+}
+
+model Certificate {
+  id Int @id @default(autoincrement())
+  name String
+  trainers Trainer[]
 }
 
 model Admin {
   id Int @default(autoincrement()) @id
   user User? @relation(fields: [user_id], references: [id])
   user_id Int @unique
+}
+
+model Plan {
+  id Int @id @default(autoincrement())
+  client Client @relation(fields: [client_id], references: [id])
+  client_id Int
+  trainer Trainer @relation(fields: [trainer_id], references: [id])
+  trainer_id Int
+  trainings Training[]
+  description String 
+}
+
+model Training {
+  id Int @id @default(autoincrement())
+  excersise_id Int
+  plan Plan @relation(fields: [plan_id], references: [id])
+  plan_id Int
+  duration Int
+  level Int
+  is_routine Boolean
+  excersises Excersise[]
+}
+
+model Excersise {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  sets Int
+  repeats Int
+  trainings Training[]
+}
+
+
+
+model Payment {
+  id Int @id @default(autoincrement())
+  client Client @relation(fields: [client_id], references: [id])
+  client_id Int
+  amount Decimal
+  method String
+  description String
+}
+
+
+model Attendance {
+  id Int @id @default(autoincrement())
+  client Client @relation(fields: [client_id], references: [id])
+  client_id Int
+  schedule Schedule @relation(fields: [schedule_id], references: [id])
+  schedule_id Int
+  attendance_date DateTime @db.Date
+  status Boolean
+}
+
+model Schedule {
+  id Int @id @default(autoincrement())
+  duration Int
+  time_start DateTime
+  time_end DateTime
+  attendances Attendance[]
+  days Day[]
+}
+
+
+model Day {
+  id Int @default(autoincrement())
+  schedule Schedule @relation(fields: [schedule_id], references: [id])
+  schedule_id Int @unique
+  day_of_week String
+}
+
+model Membership {
+  id Int @id @default(autoincrement())
+  name String
+  type String
+  rate Rate @relation(fields: [rate_id], references: [id])
+  rate_id Int @unique
+  start_date DateTime @db.Date
+  end_date DateTime @db.Date
+}
+
+model Rate {
+  id Int @id @default(autoincrement())
+  amount Decimal
+  membership Membership?
 }
 
 

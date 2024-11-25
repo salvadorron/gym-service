@@ -1,8 +1,7 @@
-import { Prisma, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import { UserEntity } from "src/domain/model/user/user.entity";
 
 export class UserBuilder {
-
 
     static build(user: User): UserEntity {
         return new UserEntity(user);
