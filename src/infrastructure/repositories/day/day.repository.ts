@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { Day, Prisma } from "@prisma/client"
 import { DayRepository } from "src/domain/repositories/day/day.repository";
 import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
@@ -7,14 +7,18 @@ import { PrismaService } from "src/infrastructure/services/prisma/prisma.service
 export class DayRepositoryImpl implements DayRepository {
     constructor(private prisma: PrismaService) {}
     
-    save(data: Prisma.DayCreateInput): Promise<Day> {
-        throw new Error("Method not implemented.");
+    async save(data: Prisma.DayCreateInput): Promise<Day> {
+        const day = await this.prisma.day.create({ data });
+        return day;
     }
-    getDays(): Promise<Day[]> {
-        throw new Error("Method not implemented.");
+    async getDays(): Promise<Day[]> {
+        const days = await this.prisma.day.findMany();
+        return days;
     }
-    getDayById(id: number): Promise<Day> {
-        throw new Error("Method not implemented.");
+    async getDayById(id: number): Promise<Day> {
+        const day = await this.prisma.day.findFirst({ where: { id } });
+        if(!day) throw new HttpException('Day not found', 404);
+        return day;
     }
 
 }

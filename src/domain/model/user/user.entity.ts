@@ -8,7 +8,7 @@ export class UserEntity {
     private age: number;
     private username: string;
     private password: string;
-    private roleId: number;
+    private roleId: string;
     private client?: Client
     private trainer?: Trainer
     private admin?: Admin
@@ -56,7 +56,7 @@ type UserEntityDto = {
     lastName: string,
     age: number,
     username: string,
-    roleId: number,
+    roleId: string,
     client?: Client
     trainer?: Trainer
     admin?: Admin

@@ -1,13 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsOptional, IsString } from "class-validator";
+import { IsNumber, IsOptional } from "class-validator";
 
 export class CreateClientDto {
-    @IsString()
+    @IsNumber()
     @ApiProperty({
         description: 'The user id of the client',
         example: '1'
     })
-    userId: string;
+    userId: number;
 
     @IsNumber()
     @IsOptional()

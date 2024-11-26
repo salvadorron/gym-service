@@ -7,7 +7,7 @@ import { RoleRepository } from 'src/domain/repositories/role/role.repository';
 export class RoleRepositoryImpl implements RoleRepository {
 
     constructor(private prisma: PrismaService) {}
-    async getRoleById(id: number): Promise<Role> {
+    async getRoleById(id: string): Promise<Role> {
         return this.prisma.role.findUnique({ where: { id } });
     }
     async getRoles(): Promise<Role[]> {

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { Membership, Prisma } from "@prisma/client"
 import { MembershipRepository } from "src/domain/repositories/membership/membership.repository";
 import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
@@ -7,14 +7,18 @@ import { PrismaService } from "src/infrastructure/services/prisma/prisma.service
 export class MembershipRepositoryImpl implements MembershipRepository {
     constructor(private prisma: PrismaService) {}
     
-    save(data: Prisma.MembershipCreateInput): Promise<Membership> {
-        throw new Error("Method not implemented.");
+    async save(data: Prisma.MembershipCreateInput): Promise<Membership> {
+        const membership = await this.prisma.membership.create({ data, include: { rate: true } });
+        return membership;
     }
-    getMemberships(): Promise<Membership[]> {
-        throw new Error("Method not implemented.");
+    async getMemberships(): Promise<Membership[]> {
+        const memberships = await this.prisma.membership.findMany({ include: { rate: true } });
+        return memberships;
     }
-    getMembershipById(id: number): Promise<Membership> {
-        throw new Error("Method not implemented.");
+    async getOneMembership(name: string, type: string): Promise<Membership> {
+        const membership = await this.prisma.membership.findFirst({ where: { name, type}, include: { rate: true } });
+        if(!membership) throw new HttpException('Membership not found', 404);
+        return membership
     }
     
 

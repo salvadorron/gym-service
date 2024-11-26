@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { Prisma } from "@prisma/client";
+import { HttpException, Injectable } from "@nestjs/common";
+import { Attendance, Prisma } from "@prisma/client";
 import AttendanceRepository from "src/domain/repositories/attendance/attendance.repository";
 import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
 
@@ -7,13 +7,19 @@ import { PrismaService } from "src/infrastructure/services/prisma/prisma.service
 export class AttendanceRepositoryImpl implements AttendanceRepository {
     constructor(private prisma: PrismaService) {}
     
-    save(data: Prisma.AttendanceCreateInput): Promise<Prisma.AttendanceCreateInput> {
-        throw new Error("Method not implemented.");
+    async save(data: Prisma.AttendanceCreateInput): Promise<Attendance> {
+        const prismaAttendance = await this.prisma.attendance.create({ data });
+        return prismaAttendance;
     }
-    getAttendances(): Promise<Prisma.AttendanceCreateInput[]> {
-        throw new Error("Method not implemented.");
+    async getAttendances(): Promise<Attendance[]> {
+        const prismaAttendances = await this.prisma.attendance.findMany();
+        return prismaAttendances;
     }
-    getAttendanceById(id: number): Promise<Prisma.AttendanceCreateInput> {
-        throw new Error("Method not implemented.");
+    async getAttendanceById(id: number): Promise<Attendance> {
+        const prismaAttendance = await this.prisma.attendance.findUnique({ where: { id } });
+        if(!prismaAttendance) throw new HttpException('Attendance not found', 404);
+        return prismaAttendance;
     }
+    
+   
 }

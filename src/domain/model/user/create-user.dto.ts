@@ -41,8 +41,8 @@ export class CreateUserDto {
     @IsString()
     @ApiProperty({
         description: 'role_id of the user',
-        example: 4
+        example: 'client'
     })
-    role_id: number;
+    role_id: string;
 
 }

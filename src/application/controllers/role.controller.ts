@@ -14,7 +14,7 @@ export class RoleController {
 
     @Get(':id')
     findOne(@Param('id') id: string) {
-        return this.roleService.getRoleById(+id);
+        return this.roleService.getRoleById(id);
     }
 
     @Post()

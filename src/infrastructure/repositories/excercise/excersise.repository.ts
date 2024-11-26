@@ -1,20 +1,24 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { Excersise, Prisma } from "@prisma/client"
 import { ExcersiseRepository } from "src/domain/repositories/excercise/excersise.repository";
 import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
 
 @Injectable()
-export class ExcersiseImpl implements ExcersiseRepository {
+export class ExcersiseRepositoryImpl implements ExcersiseRepository {
     constructor(private prisma: PrismaService) {}
     
-    save(data: Prisma.ExcersiseCreateInput): Promise<Excersise> {
-        throw new Error("Method not implemented.");
+    async save(data: Prisma.ExcersiseCreateInput): Promise<Excersise> {
+        const prismaExcersise = await this.prisma.excersise.create({ data });
+        return prismaExcersise;
     }
-    getExcersises(): Promise<Excersise[]> {
-        throw new Error("Method not implemented.");
+    async getExcersises(): Promise<Excersise[]> {
+        const prismaExcersises = await this.prisma.excersise.findMany();
+        return prismaExcersises;
     }
-    getExcersiseById(id: number): Promise<Excersise> {
-        throw new Error("Method not implemented.");
+    async getExcersiseById(id: number): Promise<Excersise> {
+        const prismaExcersise = await this.prisma.excersise.findUnique({ where: { id } });
+        if(!prismaExcersise) throw new HttpException('Excersise not found', 404);
+        return prismaExcersise;
     }
     
 

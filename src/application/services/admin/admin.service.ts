@@ -13,9 +13,9 @@ export class AdminService {
 
 
     async save(data: CreateAdminDto): Promise<Admin> {
-        const user = await this.userService.getUserById(data.userId);
+        const user = await this.userService.getUserById(data.userId.toString());
         if(!user) throw new HttpException('User not found', 404);
-        return this.adminRepository.save({ user: { connect: { id: +data.userId } } }); 
+        return this.adminRepository.save({ user: { connect: { id: data.userId } } }); 
     }
 
     async getAdmins(): Promise<Admin[]> {

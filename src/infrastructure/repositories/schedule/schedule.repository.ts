@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { Prisma, Schedule } from "@prisma/client"
 import { ScheduleRepository } from "src/domain/repositories/schedule/schedule.repository";
 import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
@@ -6,14 +6,18 @@ import { PrismaService } from "src/infrastructure/services/prisma/prisma.service
 @Injectable()
 export class ScheduleRepositoryImpl implements ScheduleRepository {
     constructor(private prisma: PrismaService) {}
-    save(data: Prisma.ScheduleCreateInput): Promise<Schedule> {
-        throw new Error("Method not implemented.");
+    async save(data: Prisma.ScheduleCreateInput): Promise<Schedule> {
+        const schedulePrisma = await this.prisma.schedule.create({data});
+        return schedulePrisma;
     }
-    getSchedules(): Promise<Schedule[]> {
-        throw new Error("Method not implemented.");
+    async getSchedules(): Promise<Schedule[]> {
+        const schedulePrismas = await this.prisma.schedule.findMany();
+        return schedulePrismas;
     }
-    getScheduleById(id: number): Promise<Schedule> {
-        throw new Error("Method not implemented.");
+    async getScheduleById(id: number): Promise<Schedule> {
+        const schedulePrisma = await this.prisma.schedule.findFirst({ where: { id } });
+        if(!schedulePrisma) throw new HttpException("Schedule not found", 404);
+        return schedulePrisma;
     }
 
 

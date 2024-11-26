@@ -1,13 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { ArrayMinSize, IsArray, IsNotEmpty, IsString } from "class-validator";
+import { ArrayMinSize, IsArray, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateTrainerDto {
-    @IsString()
+    @IsNumber()
     @ApiProperty({
         description: 'The user id of the client',
         example: '1'
     })
-    userId: string;
+    userId: number;
 
     @IsString()
     @ApiProperty({

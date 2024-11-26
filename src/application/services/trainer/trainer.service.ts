@@ -13,9 +13,9 @@ export class TrainerService {
 
 
     async save(data: CreateTrainerDto): Promise<Trainer> {
-        const user = await this.userService.getUserById(data.userId);
+        const user = await this.userService.getUserById(data.userId.toString());
         if(!user) throw new HttpException('User not found', 404);
-        return this.trainerRepository.save({ speciality: data.speciality, certificates: {create: data.certificates.map(item => ({ name: item }))}, user: { connect: { id: +data.userId } } }); 
+        return this.trainerRepository.save({ speciality: data.speciality, certificates: {create: data.certificates.map(item => ({ name: item }))}, user: { connect: { id: data.userId } } }); 
     }
 
     async getClients(): Promise<Trainer[]> {

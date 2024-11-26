@@ -14,7 +14,7 @@ export class ClientService {
 
 
     async save(data: CreateClientDto): Promise<Client> {
-        const user = await this.userService.getUserById(data.userId);
+        const user = await this.userService.getUserById(data.userId.toString());
         if(!user) throw new HttpException('User not found', 404);
         return this.clientRepository.save({ training_progress: data.trainingProgress, user: { connect: { id: +data.userId } } }); 
     }

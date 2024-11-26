@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Role {
-  id Int @default(autoincrement()) @id
+  id String @id
   name String
   users User[]
 }
@@ -27,7 +27,7 @@ model User {
   last_name String
   age Int
   role Role? @relation(fields: [role_id], references: [id])
-  role_id Int
+  role_id String
   client Client?
   trainer Trainer?
   admin Admin?
@@ -76,7 +76,6 @@ model Plan {
 
 model Training {
   id Int @id @default(autoincrement())
-  excersise_id Int
   plan Plan @relation(fields: [plan_id], references: [id])
   plan_id Int
   duration Int
@@ -134,13 +133,13 @@ model Day {
 }
 
 model Membership {
-  id Int @id @default(autoincrement())
   name String
   type String
   rate Rate @relation(fields: [rate_id], references: [id])
   rate_id Int @unique
   start_date DateTime @db.Date
   end_date DateTime @db.Date
+  @@id([name, type])
 }
 
 model Rate {
