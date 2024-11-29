@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Prisma, Schedule } from "@prisma/client"
+import { Schedule } from "@prisma/client"
 import { CreateScheduleDto } from "src/domain/model/schedule/create-schedule.dto";
 import { ScheduleRepositoryImpl } from "src/infrastructure/repositories/schedule/schedule.repository";
 
@@ -12,6 +12,9 @@ export class ScheduleService {
             duration: createScheduleDto.duration,
             time_start: createScheduleDto.timeStart,
             time_end: createScheduleDto.timeEnd,
+            days: {
+                create: createScheduleDto.days.map((day) => ({ day_of_week: day }))
+            }
         });
         return schedulePrisma;
     }

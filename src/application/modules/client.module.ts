@@ -6,10 +6,11 @@ import { ClientController } from '../controllers/client.controller';
 import { UserService } from '../services/user/user.service';
 import { UserRepositoryImpl } from 'src/infrastructure/repositories/user/user.repository';
 import { BcryptService } from 'src/infrastructure/services/bcrypt/bcrypt.service';
+import { RegisterUserClientUseCase } from '../usecases/register-user.usecase';
 
 @Module({
     controllers: [ClientController],
-    providers: [ClientRepositoryImpl, ClientService, UserRepositoryImpl, BcryptService, UserService, PrismaService],
+    providers: [ClientRepositoryImpl, ClientService, UserRepositoryImpl, BcryptService, UserService, PrismaService, RegisterUserClientUseCase],
     exports: [ClientService]
 
 })

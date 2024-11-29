@@ -1,10 +1,14 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CreateUserDto } from '../../domain/model/user/create-user.dto';
 import { UserService } from '../services/user/user.service';
+import { LoginUserUseCase } from '../usecases/login-user.usecase';
 
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService) {}
+    constructor(
+        private readonly userService: UserService,
+        private readonly loginUserUsecase: LoginUserUseCase
+    ) {}
 
 
     @Get()
@@ -22,6 +26,12 @@ export class UserController {
     @Get('by-id/:id')
     async findById(@Param('id') id: string) {
         const user = await this.userService.getUserById(id);
+        return user.toSnapshot();
+    }
+
+    @Post('login')
+    async loginUser(@Body() loginUserDto: { username: string, password: string }) {
+        const user = await this.loginUserUsecase.execute(loginUserDto);
         return user.toSnapshot();
     }
 
