@@ -41,6 +41,7 @@ model Client {
   plans Plan[]
   payments Payment[]
   attendances Attendance[]
+  memberships Membership[]
 }
 
 model Trainer {
@@ -133,13 +134,14 @@ model Day {
 }
 
 model Membership {
+  id Int @id @default(autoincrement())
   name String
   type String
   rate Rate @relation(fields: [rate_id], references: [id])
   rate_id Int @unique
   start_date DateTime @db.Date
   end_date DateTime @db.Date
-  @@id([name, type])
+  clients Client[]
 }
 
 model Rate {
