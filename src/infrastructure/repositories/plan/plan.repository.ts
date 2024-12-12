@@ -11,12 +11,14 @@ export class PlanRepositoryImpl implements PlanRepository {
         const plan = await this.prisma.plan.create({ data });
         return plan;
     }
+
     async getPlans(): Promise<Plan[]> {
-        const plan = await this.prisma.plan.findMany({include: { trainings: true}});
+        const plan = await this.prisma.plan.findMany({ include: { trainings: true, clients: true  } });
         return plan;
     }
+
     async getPlanById(id: number): Promise<Plan> {
-        const plan = await this.prisma.plan.findFirst({ where: { id }, include: { trainings: true } });
+        const plan = await this.prisma.plan.findFirst({ where: { id }, include: { trainings: true, clients: true } });
         if(!plan) throw new HttpException('Plan not found', 404);
         return plan
     }

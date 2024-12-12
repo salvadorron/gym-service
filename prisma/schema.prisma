@@ -41,7 +41,6 @@ model Client {
   plans Plan[]
   payments Payment[]
   attendances Attendance[]
-  memberships Membership[]
 }
 
 model Trainer {
@@ -67,12 +66,12 @@ model Admin {
 
 model Plan {
   id Int @id @default(autoincrement())
-  client Client @relation(fields: [client_id], references: [id])
-  client_id Int
+  clients Client[]
   trainer Trainer @relation(fields: [trainer_id], references: [id])
   trainer_id Int
   trainings Training[]
-  description String 
+  description String
+  amount Decimal
 }
 
 model Training {
@@ -131,23 +130,6 @@ model Day {
   schedule Schedule @relation(fields: [schedule_id], references: [id])
   schedule_id Int
   day_of_week String
-}
-
-model Membership {
-  id Int @id @default(autoincrement())
-  name String
-  type String
-  rate Rate @relation(fields: [rate_id], references: [id])
-  rate_id Int @unique
-  start_date DateTime @db.Date
-  end_date DateTime @db.Date
-  clients Client[]
-}
-
-model Rate {
-  id Int @id @default(autoincrement())
-  amount Decimal
-  membership Membership?
 }
 
 

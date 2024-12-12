@@ -9,7 +9,7 @@ export class PlanService {
     constructor(private planRepository: PlanRepositoryImpl) {}
     async save(data: CreatePlanDto): Promise<Plan> {
         const plan = await this.planRepository.save({
-            client: {
+            clients: {
                 connect: {
                     id: data.clientId
                 }
@@ -19,7 +19,8 @@ export class PlanService {
                     id: data.trainerId
                 }
             },
-            description: data.description
+            description: data.description,
+            amount: data.amount,
         });
         return plan;
     }

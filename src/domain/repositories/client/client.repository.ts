@@ -4,4 +4,5 @@ export interface ClientRepository {
     save(data: Prisma.ClientCreateInput): Promise<Client>
     getClients(): Promise<Client[]>
     getClientById(id: number): Promise<Client>
+    assignMembership(id: number, planId: number): Promise<Client>
 }

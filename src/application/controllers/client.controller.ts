@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ClientService } from '../services/client/client.service';
 import { CreateClientDto } from 'src/domain/model/client/create-client.dto';
 import { RegisterUserClientUseCase } from '../usecases/register-user.usecase';
@@ -35,6 +35,12 @@ export class ClientController {
     @Get(':id')
     async findById(@Param('id') id: string) {
         const client = await this.clientService.getClientById(id);
+        return client;
+    }
+
+    @Patch('assign-membership')
+    async assignMembership(@Body() { id, planId }: { id: number, planId: number }) {
+        const client = await this.clientService.assignMembership(id, planId);
         return client;
     }
 

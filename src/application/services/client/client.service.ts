@@ -1,10 +1,8 @@
 import { HttpException, Injectable } from "@nestjs/common";
-import { Client, Prisma } from "@prisma/client";
+import { Client } from "@prisma/client";
 import { CreateClientDto } from "src/domain/model/client/create-client.dto";
 import { ClientRepositoryImpl } from "src/infrastructure/repositories/client/client.repository";
-import { UserRepositoryImpl } from "src/infrastructure/repositories/user/user.repository";
 import { UserService } from "../user/user.service";
-import { RegisterUserClientDto } from "src/domain/model/client/register-userclient.dto";
 
 @Injectable()
 export class ClientService {
@@ -27,5 +25,9 @@ export class ClientService {
     async getClientById(id: string): Promise<Client> {
         return this.clientRepository.getClientById(+id);
     } 
+
+    async assignMembership(id: number, membershipId: number): Promise<Client> {
+        return this.clientRepository.assignMembership(id, membershipId);
+    }
 
 }

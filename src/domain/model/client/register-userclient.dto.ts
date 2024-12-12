@@ -34,7 +34,7 @@ export class RegisterUserClientDto {
     @ApiProperty({
         description: 'password of the user',
         example: 'dwunkhh343+'
-    })aut
+    })
     password: string;
 
 }

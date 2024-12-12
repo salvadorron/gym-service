@@ -14,12 +14,12 @@ export class UserRepositoryImpl implements UserRepository {
         private bcrypt: BcryptService
     ) {}
     async getUserById(id: string): Promise<UserEntity> {
-        const prismaUser = await this.prisma.user.findFirst({ where: { id: +id }, include: { client: { include: { payments: true, memberships: true } }, trainer: true, admin: true } });
+        const prismaUser = await this.prisma.user.findFirst({ where: { id: +id }, include: { client: { include: { payments: true } }, trainer: true, admin: true } });
         if(!prismaUser) throw new HttpException('User not found', 404);
         return UserBuilder.build(prismaUser);
     }
     async getUserByUsername(username: string): Promise<UserEntity> {
-        const prismaUser = await this.prisma.user.findFirst({ where: { username: username }, include: { client: { include: { payments: true, memberships: true } }, trainer: true, admin: true } });
+        const prismaUser = await this.prisma.user.findFirst({ where: { username: username }, include: { client: { include: { payments: true } }, trainer: true, admin: true } });
         if(!prismaUser) throw new HttpException('User not found', 404);
         return UserBuilder.build(prismaUser);
     }
