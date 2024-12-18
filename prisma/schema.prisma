@@ -70,8 +70,11 @@ model Plan {
   trainer Trainer @relation(fields: [trainer_id], references: [id])
   trainer_id Int
   trainings Training[]
+  name String
   description String
+  billing_interval String
   amount Decimal
+
 }
 
 model Training {

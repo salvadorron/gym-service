@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user.module';
 import { RoleModule } from './role.module';
@@ -12,6 +12,7 @@ import { PlanModule } from './plan.module';
 import { ScheduleModule } from './schedule.module';
 import { ExcersiseModule } from './excersise.module';
 import { TrainingModule } from './training.module';
+import { PreflightMiddleware } from '../middlewares/preflight-middleware';
 
 @Module({
   imports: [
@@ -32,4 +33,12 @@ import { TrainingModule } from './training.module';
     TrainingModule
   ],
 })
-export class AppModule  {}
+export class AppModule implements NestModule {
+
+  constructor () {}
+
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(PreflightMiddleware).forRoutes("*")
+  }
+  
+}

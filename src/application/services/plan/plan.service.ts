@@ -19,6 +19,8 @@ export class PlanService {
                     id: data.trainerId
                 }
             },
+            name: data.name,
+            billing_interval: data.billing_interval,
             description: data.description,
             amount: data.amount,
         });
