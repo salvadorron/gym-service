@@ -7,10 +7,13 @@ import { UserService } from '../services/user/user.service';
 import { UserRepositoryImpl } from 'src/infrastructure/repositories/user/user.repository';
 import { BcryptService } from 'src/infrastructure/services/bcrypt/bcrypt.service';
 import { RegisterUserClientUseCase } from '../usecases/register-user.usecase';
+import { AssignTrainerUseCase } from '../usecases/assign-trainer.usecase';
+import { TrainerService } from '../services/trainer/trainer.service';
+import { TrainerRepositoryImpl } from 'src/infrastructure/repositories/trainer/trainer.repository';
 
 @Module({
     controllers: [ClientController],
-    providers: [ClientRepositoryImpl, ClientService, UserRepositoryImpl, BcryptService, UserService, PrismaService, RegisterUserClientUseCase],
+    providers: [ClientRepositoryImpl, ClientService, UserRepositoryImpl, BcryptService, UserService, PrismaService, TrainerRepositoryImpl, TrainerService, RegisterUserClientUseCase, AssignTrainerUseCase],
     exports: [ClientService]
 
 })

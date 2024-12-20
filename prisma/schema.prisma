@@ -41,6 +41,8 @@ model Client {
   plans Plan[]
   payments Payment[]
   attendances Attendance[]
+  trainer Trainer? @relation(fields: [trainer_id], references: [id])
+  trainer_id Int?
 }
 
 model Trainer {
@@ -49,7 +51,7 @@ model Trainer {
   user User? @relation(fields: [user_id], references: [id])
   user_id Int @unique
   certificates Certificate[]
-  plans Plan[]
+  clients Client[]
 }
 
 model Certificate {
@@ -67,8 +69,6 @@ model Admin {
 model Plan {
   id Int @id @default(autoincrement())
   clients Client[]
-  trainer Trainer @relation(fields: [trainer_id], references: [id])
-  trainer_id Int
   trainings Training[]
   name String
   description String

@@ -16,13 +16,13 @@ export class TrainerController {
 
     @Get()
     async findAll() {
-        const trainers = await this.trainerService.getClients();
+        const trainers = await this.trainerService.getTrainers();
         return trainers;
     }
 
     @Get(':id')
     async findById(@Param('id') id: string) {
-        const trainer = await this.trainerService.getClientById(id);
+        const trainer = await this.trainerService.getTrainerById(id);
         return trainer;
     }
 

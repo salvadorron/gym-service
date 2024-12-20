@@ -18,11 +18,11 @@ export class TrainerService {
         return this.trainerRepository.save({ speciality: data.speciality, certificates: {create: data.certificates.map(item => ({ name: item }))}, user: { connect: { id: data.userId } } }); 
     }
 
-    async getClients(): Promise<Trainer[]> {
+    async getTrainers(): Promise<Trainer[]> {
         return this.trainerRepository.getTrainers();
     }
 
-    async getClientById(id: string): Promise<Trainer> {
+    async getTrainerById(id: string): Promise<Trainer> {
         return this.trainerRepository.getTrainerById(+id);
     } 
 

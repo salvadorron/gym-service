@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from "@nestjs/common";
-import { Client } from "@prisma/client";
+import { Client, Prisma } from "@prisma/client";
 import { CreateClientDto } from "src/domain/model/client/create-client.dto";
 import { ClientRepositoryImpl } from "src/infrastructure/repositories/client/client.repository";
 import { UserService } from "../user/user.service";
@@ -16,6 +16,10 @@ export class ClientService {
         const user = await this.userService.getUserById(data.userId.toString());
         if(!user) throw new HttpException('User not found', 404);
         return this.clientRepository.save({ training_progress: data.trainingProgress, user: { connect: { id: +data.userId } } }); 
+    }
+
+    async update(id: number, data: Prisma.ClientUpdateInput): Promise<Client> {
+        return this.clientRepository.update(id, data);
     }
 
     async getClients(): Promise<Client[]> {

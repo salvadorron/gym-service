@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from "@nestjs/common";
-import { Prisma, Client, PrismaClient } from "@prisma/client";
+import { Prisma, Client } from "@prisma/client";
 import { ClientRepository } from "src/domain/repositories/client/client.repository";
 import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
 
@@ -16,6 +16,11 @@ export class ClientRepositoryImpl implements ClientRepository {
     async save(data: Prisma.ClientCreateInput): Promise<Client> {
         const prismaClient = await this.prisma.client.create({ data });
         return prismaClient;
+    }
+
+    async update(id: number, data: Prisma.ClientUpdateInput): Promise<Client> {
+        const prismaClient = await this.prisma.client.update({ where: { id }, data });
+        return prismaClient
     }
 
     async getClients(): Promise<Client[]> {
