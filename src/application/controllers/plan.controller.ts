@@ -7,8 +7,7 @@ import { AssignTrainerUseCase } from '../usecases/assign-trainer.usecase';
 export class PlanController {
 
     constructor(
-        private readonly planService: PlanService,
-        private readonly assignTrainerUseCase: AssignTrainerUseCase
+        private readonly planService: PlanService
     ){}
 
     @Post()
@@ -24,13 +23,6 @@ export class PlanController {
     @Get(':id')
     async findById(@Param('id') id: string) {
         return this.planService.getPlanById(id);
-    }
-
-
-    @Post('assign-trainer')
-    async assignTrainer(@Body() { clientId }: { clientId: number }) {
-        const response = await this.assignTrainerUseCase.execute({ clientId });
-        return response;
     }
 
 }

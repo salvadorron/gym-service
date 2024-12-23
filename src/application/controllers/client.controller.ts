@@ -3,13 +3,15 @@ import { ClientService } from '../services/client/client.service';
 import { CreateClientDto } from 'src/domain/model/client/create-client.dto';
 import { RegisterUserClientUseCase } from '../usecases/register-user.usecase';
 import { RegisterUserClientDto } from 'src/domain/model/client/register-userclient.dto';
+import { AssignTrainerUseCase } from '../usecases/assign-trainer.usecase';
 
 @Controller('client')
 export class ClientController {
 
     constructor(
         private readonly clientService: ClientService,
-        private readonly registerClientUsecase: RegisterUserClientUseCase
+        private readonly registerClientUsecase: RegisterUserClientUseCase,
+        private readonly assignTrainerUseCase: AssignTrainerUseCase
     ){}
 
 
@@ -41,6 +43,7 @@ export class ClientController {
     @Patch('assign-membership')
     async assignMembership(@Body() { id, planId }: { id: number, planId: number }) {
         const client = await this.clientService.assignMembership(id, planId);
+        await this.assignTrainerUseCase.execute({ clientId: id });
         return client;
     }
 
