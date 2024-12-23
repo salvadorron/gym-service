@@ -11,10 +11,12 @@ export class AttendanceRepositoryImpl implements AttendanceRepository {
         const prismaAttendance = await this.prisma.attendance.create({ data });
         return prismaAttendance;
     }
+
     async getAttendances(): Promise<Attendance[]> {
         const prismaAttendances = await this.prisma.attendance.findMany();
         return prismaAttendances;
     }
+    
     async getAttendanceById(id: number): Promise<Attendance> {
         const prismaAttendance = await this.prisma.attendance.findUnique({ where: { id } });
         if(!prismaAttendance) throw new HttpException('Attendance not found', 404);
