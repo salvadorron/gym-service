@@ -9,9 +9,7 @@ export class TrainingService {
     
     async save(createTrainingDto: CreateTrainingDto): Promise<Training> {
         const prismaTraining = await this.trainingRepository.save({
-            duration: createTrainingDto.duration,
-            is_routine: createTrainingDto.isRoutine,
-            level: createTrainingDto.level,
+            name: createTrainingDto.name,
             plan: {
                 connect: {
                     id: createTrainingDto.planId

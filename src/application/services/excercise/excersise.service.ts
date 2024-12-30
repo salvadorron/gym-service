@@ -12,7 +12,7 @@ export class ExcersiseService {
             name: createExcersiseDto.name,
             description: createExcersiseDto.description,
             repeats: createExcersiseDto.repeats,
-            sets: createExcersiseDto.sets,
+            series: createExcersiseDto.series,
             trainings: { connect: { id: createExcersiseDto.trainingId } },
         });
         return prismaExcersise;

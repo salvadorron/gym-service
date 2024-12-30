@@ -9,26 +9,12 @@ export class CreateTrainingDto {
     })
     planId: number;
     
-    @IsNumber()
-    @ApiProperty({
-        description: 'the duration of the training',
-        example: 390
-    })
-    duration: number
-
-    @IsNumber()
-    @ApiProperty({
-        description: 'the level of the training',
-        example: 1
-    })
-    level: number
-
 
     @IsBoolean()
     @ApiProperty({
-        description: 'indicates if the training is routine',
+        description: 'indicates the name of training',
         example: false
     })
-    isRoutine: boolean
+    name: string
 
 }

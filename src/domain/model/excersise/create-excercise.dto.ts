@@ -21,7 +21,7 @@ export class CreateExcersiseDto {
         description: 'the sets of the excersise',
         example: 3
     })
-    sets: number
+    series: number
     
     @IsNumber()
     @ApiProperty({
