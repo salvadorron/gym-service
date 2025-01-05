@@ -1,8 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ClientService } from '../services/client/client.service';
-import { CreateClientDto } from 'src/domain/model/client/create-client.dto';
 import { AdminService } from '../services/admin/admin.service';
-import { CreateAdminDto } from 'src/domain/model/admin/create-admin.dto';
+import { CreateAdminDto } from '../../domain/model/admin/create-admin.dto';
 
 @Controller('admin')
 export class AdminController {

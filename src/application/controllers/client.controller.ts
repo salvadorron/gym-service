@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ClientService } from '../services/client/client.service';
-import { CreateClientDto } from 'src/domain/model/client/create-client.dto';
+import { CreateClientDto } from '../../domain/model/client/create-client.dto';
 import { RegisterUserClientUseCase } from '../usecases/register-user.usecase';
-import { RegisterUserClientDto } from 'src/domain/model/client/register-userclient.dto';
+import { RegisterUserClientDto } from '../../domain/model/client/register-userclient.dto';
 import { AssignTrainerUseCase } from '../usecases/assign-trainer.usecase';
 
 @Controller('client')

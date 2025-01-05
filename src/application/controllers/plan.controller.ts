@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PlanService } from '../services/plan/plan.service';
-import { CreatePlanDto } from 'src/domain/model/plan/create-plan.dto';
-import { AssignTrainerUseCase } from '../usecases/assign-trainer.usecase';
+import { CreatePlanDto } from '../../domain/model/plan/create-plan.dto';
 
 @Controller('plan')
 export class PlanController {

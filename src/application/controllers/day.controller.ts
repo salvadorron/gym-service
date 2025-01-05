@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { DayService } from '../services/day/day.service';
-import { CreateDayDto } from 'src/domain/model/day/create-day.dto';
+import { CreateDayDto } from '../../domain/model/day/create-day.dto';
 
 @Controller('day')
 export class DayController {

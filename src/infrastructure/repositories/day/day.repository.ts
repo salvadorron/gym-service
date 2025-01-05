@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { Day, Prisma } from "@prisma/client"
-import { DayRepository } from "src/domain/repositories/day/day.repository";
-import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
+import { DayRepository } from "../../../domain/repositories/day/day.repository";
+import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
 
 @Injectable()
 export class DayRepositoryImpl implements DayRepository {

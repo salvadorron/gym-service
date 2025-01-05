@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { TrainingService } from '../services/training/training.service';
-import { CreateTrainingDto } from 'src/domain/model/training/create-training.dto';
+import { CreateTrainingDto } from '../../domain/model/training/create-training.dto';
 
 @Controller('training')
 export class TrainingController {

@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { Attendance, Prisma } from "@prisma/client";
-import AttendanceRepository from "src/domain/repositories/attendance/attendance.repository";
-import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
+import AttendanceRepository from "../../../domain/repositories/attendance/attendance.repository";
+import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
 
 @Injectable()
 export class AttendanceRepositoryImpl implements AttendanceRepository {

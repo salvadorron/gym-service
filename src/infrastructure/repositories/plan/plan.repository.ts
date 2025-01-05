@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { Plan, Prisma } from "@prisma/client"
-import { PlanRepository } from "src/domain/repositories/plan/plan.repository";
-import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
+import { PlanRepository } from "../../../domain/repositories/plan/plan.repository";
+import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
 
 
 @Injectable()

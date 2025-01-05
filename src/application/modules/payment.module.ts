@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { PaymentController } from '../controllers/payment.controller';
-import { PaymentRepositoryImpl } from 'src/infrastructure/repositories/payment/payment.repository';
+import { PaymentRepositoryImpl } from '../../infrastructure/repositories/payment/payment.repository';
 import { PaymentService } from '../services/payment/payment.service';
-import { PrismaService } from 'src/infrastructure/services/prisma/prisma.service';
+import { PrismaService } from '../../infrastructure/services/prisma/prisma.service';
 
 @Module({
     controllers: [PaymentController],

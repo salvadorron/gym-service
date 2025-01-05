@@ -1,5 +1,5 @@
 import { Prisma, User } from "@prisma/client";
-import { UserEntity } from "src/domain/model/user/user.entity";
+import { UserEntity } from "../../../domain/model/user/user.entity";
 
 export interface UserRepository {
     save(data: Prisma.UserCreateInput): Promise<UserEntity>,

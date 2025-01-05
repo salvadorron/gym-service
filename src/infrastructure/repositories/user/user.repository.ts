@@ -1,10 +1,10 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { Prisma } from "@prisma/client";
-import { UserBuilder } from "src/application/builder/user.builder";
-import { UserEntity } from "src/domain/model/user/user.entity";
-import { UserRepository } from "src/domain/repositories/user/user.repository";
-import { BcryptService } from "src/infrastructure/services/bcrypt/bcrypt.service";
-import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
+import { UserBuilder } from "../../../application/builder/user.builder";
+import { UserEntity } from "../../../domain/model/user/user.entity";
+import { UserRepository } from "../../../domain/repositories/user/user.repository";
+import { BcryptService } from "../../../infrastructure/services/bcrypt/bcrypt.service";
+import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
 
 @Injectable()
 export class UserRepositoryImpl implements UserRepository {

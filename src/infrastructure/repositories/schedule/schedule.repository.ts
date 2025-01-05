@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { Prisma, Schedule } from "@prisma/client"
-import { ScheduleRepository } from "src/domain/repositories/schedule/schedule.repository";
-import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
+import { ScheduleRepository } from "../../../domain/repositories/schedule/schedule.repository";
+import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
 
 @Injectable()
 export class ScheduleRepositoryImpl implements ScheduleRepository {

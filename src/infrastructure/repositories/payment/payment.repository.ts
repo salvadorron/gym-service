@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { Day, Payment, Prisma } from "@prisma/client"
-import { PaymentRepository } from "src/domain/repositories/payment/payment.repository";
-import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
+import { PaymentRepository } from "../../../domain/repositories/payment/payment.repository";
+import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
 
 @Injectable()
 export class PaymentRepositoryImpl implements PaymentRepository {

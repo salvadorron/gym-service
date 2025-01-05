@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AttendanceService } from '../services/attendance/attendance.service';
-import { CreateAttendenceDto } from 'src/domain/model/attendence/create-attendence.dto';
+import { CreateAttendenceDto } from '../../domain/model/attendence/create-attendence.dto';
 
 @Controller('attendance')
 export class AttendanceController {

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { CreateTrainerDto } from 'src/domain/model/trainer/create-trainer.dto';
+import { CreateTrainerDto } from '../../domain/model/trainer/create-trainer.dto';
 import { TrainerService } from '../services/trainer/trainer.service';
 
 @Controller('trainer')

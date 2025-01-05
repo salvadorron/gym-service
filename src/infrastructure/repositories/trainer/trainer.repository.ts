@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { Prisma, Trainer } from "@prisma/client";
-import { TrainerRepository } from "src/domain/repositories/trainer/trainer.repository";
-import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
+import { TrainerRepository } from "../../../domain/repositories/trainer/trainer.repository";
+import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
 
 @Injectable()
 export class TrainerRepositoryImpl implements TrainerRepository {
