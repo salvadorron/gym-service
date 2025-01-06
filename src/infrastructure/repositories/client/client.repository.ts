@@ -24,11 +24,11 @@ export class ClientRepositoryImpl implements ClientRepository {
     }
 
     async getClients(): Promise<Client[]> {
-        const prismaClients = await this.prisma.client.findMany({ include: { payments: true, plans: { include: { trainings: { include: { excersises: true, schedule: true } } } } } });
+        const prismaClients = await this.prisma.client.findMany({ include: { payments: true, plans: { include: { trainings: { include: { excersises: true, schedule: { include: { days: true } } } } } } } });
         return prismaClients;
     }
     async getClientById(id: number): Promise<Client> {
-        const prismaClient = await this.prisma.client.findUnique({ where: { id }, include: { payments: true, plans: { include: { trainings: { include: { excersises: true, schedule: true } } } } } });
+        const prismaClient = await this.prisma.client.findUnique({ where: { id }, include: { payments: true, plans: { include: { trainings: { include: { excersises: true, schedule: { include: { days: true } } } } } } } });
         if(!prismaClient) throw new HttpException('Client not found', 404);
         return prismaClient;
     }
