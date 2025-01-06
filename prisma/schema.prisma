@@ -84,6 +84,7 @@ model Training {
   plan_id Int
   name String
   excersises Excersise[]
+  schedule Schedule?
 }
 
 model Excersise {
@@ -120,6 +121,8 @@ model Attendance {
 model Schedule {
   id Int @id @default(autoincrement())
   duration Int
+  training Training @relation(fields: [training_id], references: [id])
+  training_id Int @unique
   time_start DateTime
   time_end DateTime
   attendances Attendance[]
