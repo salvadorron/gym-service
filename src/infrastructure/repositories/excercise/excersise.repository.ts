@@ -20,7 +20,4 @@ export class ExcersiseRepositoryImpl implements ExcersiseRepository {
         if(!prismaExcersise) throw new HttpException('Excersise not found', 404);
         return prismaExcersise;
     }
-    
-
-
 }
