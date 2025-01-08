@@ -93,7 +93,7 @@ model Excersise {
   description String?
   repeats Int @default(0)
   series Int @default(0)
-  duration Int
+  duration Int @default(0)
   trainings Training[]
 }
 
