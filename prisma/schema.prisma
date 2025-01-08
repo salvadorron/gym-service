@@ -106,6 +106,7 @@ model Payment {
   amount Decimal
   method String
   description String
+  date DateTime @db.Date
 }
 
 
