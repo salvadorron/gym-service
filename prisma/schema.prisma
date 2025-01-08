@@ -93,6 +93,7 @@ model Excersise {
   description String?
   repeats Int @default(0)
   series Int @default(0)
+  duration Int
   trainings Training[]
 }
 
@@ -123,8 +124,8 @@ model Schedule {
   duration Int
   training Training @relation(fields: [training_id], references: [id])
   training_id Int @unique
-  time_start DateTime
-  time_end DateTime
+  time_start DateTime @db.Time
+  time_end DateTime @db.Time
   attendances Attendance[]
   days Day[]
 }
