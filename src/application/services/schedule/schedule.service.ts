@@ -12,6 +12,7 @@ export class ScheduleService {
             duration: createScheduleDto.duration,
             time_start: createScheduleDto.timeStart,
             time_end: createScheduleDto.timeEnd,
+            training: { connect: { id: createScheduleDto.trainingId } },
             days: {
                 create: createScheduleDto.days.map((day) => ({ day_of_week: day }))
             }

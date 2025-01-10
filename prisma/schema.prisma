@@ -39,7 +39,8 @@ model Client {
   training_progress Int @default(0)
   user User? @relation(fields: [user_id], references: [id])
   user_id Int @unique
-  plans Plan[]
+  plan Plan? @relation(fields: [plan_id], references: [id])
+  plan_id Int?
   payments Payment[]
   attendances Attendance[]
   trainer Trainer? @relation(fields: [trainer_id], references: [id])

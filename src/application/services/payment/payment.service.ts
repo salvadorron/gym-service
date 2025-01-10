@@ -12,6 +12,7 @@ export class PaymentService {
             amount: createPaymentDto.amount,
             description: createPaymentDto.description,
             method: createPaymentDto.method,
+            date: new Date(),
             client: {
                 connect: {
                     id: createPaymentDto.clientId

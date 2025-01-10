@@ -9,7 +9,7 @@ export class ClientRepositoryImpl implements ClientRepository {
     constructor(private prisma: PrismaService){}
     
     async assignMembership(id: number, planId: number): Promise<Client> {
-        const client = await this.prisma.client.update({ data: { plans: { connect: { id: planId } } }, where: { id } })
+        const client = await this.prisma.client.update({ data: { plan: { connect: { id: planId } } }, where: { id } })
         return client;
     }
 
@@ -24,11 +24,11 @@ export class ClientRepositoryImpl implements ClientRepository {
     }
 
     async getClients(): Promise<Client[]> {
-        const prismaClients = await this.prisma.client.findMany({ include: { payments: true, plans: { include: { trainings: { include: { excersises: true, schedule: { include: { days: true } } } } } } } });
+        const prismaClients = await this.prisma.client.findMany({ include: { payments: true, plan: { include: { trainings: { include: { excersises: true, schedule: { include: { days: true } } } } } } } });
         return prismaClients;
     }
     async getClientById(id: number): Promise<Client> {
-        const prismaClient = await this.prisma.client.findUnique({ where: { id }, include: { payments: true, plans: { include: { trainings: { include: { excersises: true, schedule: { include: { days: true } } } } } } } });
+        const prismaClient = await this.prisma.client.findUnique({ where: { id }, include: { payments: true, plan: { include: { trainings: { include: { excersises: true, schedule: { include: { days: true } } } } } } } });
         if(!prismaClient) throw new HttpException('Client not found', 404);
         return prismaClient;
     }

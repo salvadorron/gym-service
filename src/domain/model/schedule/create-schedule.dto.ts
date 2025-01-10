@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { ArrayMinSize, IsArray, IsDateString, IsEnum, IsNumber } from "class-validator";
+import { ArrayMinSize, IsArray, IsDateString, IsEnum, IsNumber, IsString } from "class-validator";
 
 export class CreateScheduleDto {
     @IsNumber()
@@ -31,5 +31,13 @@ export class CreateScheduleDto {
         example: '["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]'
     })
     days: ("Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday")[]
+
+    @IsString()
+    @ApiProperty({
+        description: 'the training id',
+        example: 3
+    })
+    trainingId: number
+
 
 }
