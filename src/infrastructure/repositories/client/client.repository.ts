@@ -11,7 +11,6 @@ export class ClientRepositoryImpl implements ClientRepository {
     async assignMembership(id: number, planId: number, payment: { method: string, description: string, amount: number }): Promise<Client> {
         const client = await this.prisma.client.update({ data: { plan: { connect: { id: planId } }, payments: {
             create: {
-                id,
                 date: new Date(),
                 method: payment.method,
                 description: payment.description,
