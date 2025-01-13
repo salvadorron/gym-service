@@ -8,8 +8,16 @@ export class ClientRepositoryImpl implements ClientRepository {
 
     constructor(private prisma: PrismaService){}
     
-    async assignMembership(id: number, planId: number): Promise<Client> {
-        const client = await this.prisma.client.update({ data: { plan: { connect: { id: planId } } }, where: { id } })
+    async assignMembership(id: number, planId: number, payment: { method: string, description: string, amount: number }): Promise<Client> {
+        const client = await this.prisma.client.update({ data: { plan: { connect: { id: planId } }, payments: {
+            create: {
+                id,
+                date: new Date(),
+                method: payment.method,
+                description: payment.description,
+                amount: payment.amount
+            }
+        } }, where: { id } })
         return client;
     }
 

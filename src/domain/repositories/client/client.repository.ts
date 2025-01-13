@@ -5,5 +5,5 @@ export interface ClientRepository {
     update(id: number, data: Prisma.ClientUpdateInput): Promise<Client>
     getClients(): Promise<Client[]>
     getClientById(id: number): Promise<Client>
-    assignMembership(id: number, planId: number): Promise<Client>
+    assignMembership(id: number, planId: number, payment: { method: string, description: string, amount: number }): Promise<Client>
 }

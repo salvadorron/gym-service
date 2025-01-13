@@ -30,8 +30,8 @@ export class ClientService {
         return this.clientRepository.getClientById(+id);
     } 
 
-    async assignMembership(id: number, membershipId: number): Promise<Client> {
-        return this.clientRepository.assignMembership(id, membershipId);
+    async assignMembership(id: number, membershipId: number, payment: { method: string, description: string, amount: number }): Promise<Client> {
+        return this.clientRepository.assignMembership(id, membershipId, payment);
     }
 
 }
