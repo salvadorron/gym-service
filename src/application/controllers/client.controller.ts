@@ -43,7 +43,9 @@ export class ClientController {
     @Patch('assign-membership')
     async assignMembership(@Body() { id, planId, payment }: { id: number, planId: number, payment: { method: string, description: string, amount: number } }) {
         const client = await this.clientService.assignMembership(id, planId, payment);
-        await this.assignTrainerUseCase.execute({ clientId: id });
+        if(!client.trainer_id) {
+            await this.assignTrainerUseCase.execute({ clientId: id });
+        }
         return client;
     }
 
