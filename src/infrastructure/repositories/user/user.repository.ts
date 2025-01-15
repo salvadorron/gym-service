@@ -40,8 +40,21 @@ export class UserRepositoryImpl implements UserRepository {
     }
 
 
-    async getUsers(): Promise<UserEntity[]> {
-        const prismaUsers = await this.prisma.user.findMany({ include: { client: { include: { payments: true, plan: true } }, trainer: true, admin: true } });
+    async getUsers(trainerId?: number): Promise<UserEntity[]> {
+
+        const where: Prisma.UserWhereInput = {}
+        
+        if(trainerId){
+            Object.assign(where, {
+                role_id: 'client',
+                client: {
+                    trainer_id: trainerId
+                }
+            })
+        }
+
+        const prismaUsers = await this.prisma.user.findMany({ include: { client: { include: { payments: true, plan: true } }, trainer: true, admin: true }, where });
+        
         const users = prismaUsers.map(users => UserBuilder.build(users));
         return users;
     }

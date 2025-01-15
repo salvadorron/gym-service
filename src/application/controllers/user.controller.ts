@@ -12,8 +12,8 @@ export class UserController {
 
 
     @Get()
-    async findAll() {
-        const users = await this.userService.getUsers();
+    async findAll(@Query('trainerId') trainerId?: number) {
+        const users = await this.userService.getUsers(trainerId);
         return users.map(user => user.toSnapshot());
     }
 

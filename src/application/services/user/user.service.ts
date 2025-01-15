@@ -11,8 +11,8 @@ export class UserService {
         return this.userRepository.save(data);
     }
 
-    async getUsers(): Promise<UserEntity[]> {
-        return this.userRepository.getUsers();
+    async getUsers(trainerId?: number): Promise<UserEntity[]> {
+        return this.userRepository.getUsers(trainerId);
     }
 
     async getUserById(id: string): Promise<UserEntity> {
