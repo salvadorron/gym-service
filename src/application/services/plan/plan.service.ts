@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Plan } from "@prisma/client"
+import { Client, Plan, Training } from "@prisma/client"
 import { CreatePlanDto } from "src/domain/model/plan/create-plan.dto";
 import { PlanRepositoryImpl } from "src/infrastructure/repositories/plan/plan.repository";
 
@@ -26,7 +26,7 @@ export class PlanService {
         const plan = await this.planRepository.getPlans();
         return plan;
     }
-    async getPlanById(id: string): Promise<Plan> {
+    async getPlanById(id: string): Promise<Plan & { trainings: Training[]; clients: Client[]; }> {
         const plan = await this.planRepository.getPlanById(+id);
         return plan
     }

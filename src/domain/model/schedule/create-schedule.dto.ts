@@ -1,27 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { ArrayMinSize, IsArray, IsDateString, IsEnum, IsNumber, IsString } from "class-validator";
+import { ArrayMinSize, IsArray, IsEnum, IsString } from "class-validator";
 
 export class CreateScheduleDto {
-    @IsNumber()
+    @IsString()
     @ApiProperty({
-        description: 'the duration of the training',
-        example: 390
+        description: 'turn of training',
+        example: 'M'
     })
-    duration: number;
-    
-    @IsDateString()
-    @ApiProperty({
-        description: 'the start time of the training',
-        example: '01-01-2024 01:00:00'
-    })
-    timeStart: string
-
-    @IsDateString()
-    @ApiProperty({
-        description: 'the end time of the training',
-        example: '01-01-2024 08:59:59'
-    })
-    timeEnd: string
+    turn: string
 
     @IsArray({ each: false })
     @ArrayMinSize(1)

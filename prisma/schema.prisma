@@ -123,13 +123,11 @@ model Attendance {
 
 model Schedule {
   id Int @id @default(autoincrement())
-  duration Int
   training Training @relation(fields: [training_id], references: [id])
   training_id Int @unique
-  time_start DateTime @db.Time
-  time_end DateTime @db.Time
   attendances Attendance[]
   days Day[]
+  turn String?
 }
 
 

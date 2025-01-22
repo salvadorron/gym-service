@@ -9,13 +9,11 @@ export class ScheduleService {
     
     async save(createScheduleDto: CreateScheduleDto): Promise<Schedule> {
         const schedulePrisma = await this.scheduleRepository.save({
-            duration: createScheduleDto.duration,
-            time_start: createScheduleDto.timeStart,
-            time_end: createScheduleDto.timeEnd,
             training: { connect: { id: createScheduleDto.trainingId } },
             days: {
                 create: createScheduleDto.days.map((day) => ({ day_of_week: day }))
-            }
+            },
+            turn: createScheduleDto.turn
         });
         return schedulePrisma;
     }

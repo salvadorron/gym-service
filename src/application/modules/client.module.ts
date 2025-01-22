@@ -10,10 +10,14 @@ import { RegisterUserClientUseCase } from '../usecases/register-user.usecase';
 import { AssignTrainerUseCase } from '../usecases/assign-trainer.usecase';
 import { TrainerService } from '../services/trainer/trainer.service';
 import { TrainerRepositoryImpl } from '../../infrastructure/repositories/trainer/trainer.repository';
+import { ScheduleService } from '../services/schedule/schedule.service';
+import { ScheduleRepositoryImpl } from 'src/infrastructure/repositories/schedule/schedule.repository';
+import { PlanService } from '../services/plan/plan.service';
+import { PlanRepositoryImpl } from 'src/infrastructure/repositories/plan/plan.repository';
 
 @Module({
     controllers: [ClientController],
-    providers: [ClientRepositoryImpl, ClientService, UserRepositoryImpl, BcryptService, UserService, PrismaService, TrainerRepositoryImpl, TrainerService, RegisterUserClientUseCase, AssignTrainerUseCase],
+    providers: [ClientRepositoryImpl, ClientService, UserRepositoryImpl, ScheduleService, ScheduleRepositoryImpl, PlanService, PlanRepositoryImpl, BcryptService, UserService, PrismaService, TrainerRepositoryImpl, TrainerService, RegisterUserClientUseCase, AssignTrainerUseCase],
     exports: [ClientService]
 
 })
