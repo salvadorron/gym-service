@@ -3,12 +3,14 @@ import { Client, Prisma } from "@prisma/client";
 import { CreateClientDto } from "src/domain/model/client/create-client.dto";
 import { ClientRepositoryImpl } from "src/infrastructure/repositories/client/client.repository";
 import { UserService } from "../user/user.service";
+import PdfJsService from "src/infrastructure/services/pdf/pdf.service";
 
 @Injectable()
 export class ClientService {
     constructor(
         private clientRepository: ClientRepositoryImpl,
-        private userService: UserService
+        private userService: UserService,
+        private pdfService: PdfJsService
     ) {}
 
 
@@ -33,5 +35,17 @@ export class ClientService {
     async assignMembership(id: number, membershipId: number, payment: { method: string, description: string, amount: number }): Promise<Client> {
         return this.clientRepository.assignMembership(id, membershipId, payment);
     }
+
+    
+    async generateSchedulePDF(clientId: number): Promise<Buffer> {
+        const client = await this.clientRepository.getClientById(clientId);
+        if(!client) throw new Error('Client not found')
+        const user = await this.userService.getUserById(client.user_id.toString())
+        if(!user) throw new Error('User not found');
+        const userDto = user.toSnapshot()
+        const owner = `${userDto.name} ${userDto.lastName}`
+        return this.pdfService.buildSchedule({ trainings: client.plan.trainings, owner }); 
+    }
+
 
 }

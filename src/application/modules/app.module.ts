@@ -30,8 +30,8 @@ import { PreflightMiddleware } from '../middlewares/preflight-middleware';
     PaymentModule,
     PlanModule,
     ScheduleModule,
-    TrainingModule
-  ],
+    TrainingModule,
+  ]
 })
 export class AppModule implements NestModule {
 

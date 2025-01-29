@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, StreamableFile } from '@nestjs/common';
 import { ClientService } from '../services/client/client.service';
 import { CreateClientDto } from '../../domain/model/client/create-client.dto';
 import { RegisterUserClientUseCase } from '../usecases/register-user.usecase';
@@ -30,6 +30,16 @@ export class ClientController {
     async registerUserClient(@Body() registerUserClientDto: RegisterUserClientDto) {
         const newUserClient = await this.registerClientUsecase.execute(registerUserClientDto);
         return newUserClient.toSnapshot();
+    }
+
+    
+    @Get(":clientId/report")
+    async getReport(@Param("clientId") clientId: number): Promise<StreamableFile> {
+      const pdfBuffer = await this.clientService.generateSchedulePDF(clientId);
+      return new StreamableFile(pdfBuffer, {
+        type: 'application/pdf',
+        disposition: 'attachment; filename="reporte.pdf"',
+      });
     }
 
     @Get()
