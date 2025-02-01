@@ -14,7 +14,7 @@ import { ScheduleService } from '../services/schedule/schedule.service';
 import { ScheduleRepositoryImpl } from 'src/infrastructure/repositories/schedule/schedule.repository';
 import { PlanService } from '../services/plan/plan.service';
 import { PlanRepositoryImpl } from 'src/infrastructure/repositories/plan/plan.repository';
-import PdfJsService from 'src/infrastructure/services/pdf/pdf.service';
+import PdfJsService from '../../infrastructure/services/pdf/pdf.service';
 
 @Module({
     controllers: [ClientController],

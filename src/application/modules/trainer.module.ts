@@ -9,7 +9,7 @@ import { PrismaService } from '../../infrastructure/services/prisma/prisma.servi
 import { AssignTrainerUseCase } from '../usecases/assign-trainer.usecase';
 import { ClientService } from '../services/client/client.service';
 import { ClientRepositoryImpl } from '../../infrastructure/repositories/client/client.repository';
-import PdfJsService from 'src/infrastructure/services/pdf/pdf.service';
+import PdfJsService from '../../infrastructure/services/pdf/pdf.service';
 
 @Module({
     controllers: [TrainerController],
