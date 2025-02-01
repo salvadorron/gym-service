@@ -4,21 +4,20 @@ import { RoleService } from '../services/role/role.service';
 
 @Controller('role')
 export class RoleController {
-    constructor(private readonly roleService: RoleService) {}
+  constructor(private readonly roleService: RoleService) {}
 
-    @Get()
-    findAll() {
-        return this.roleService.getRoles();
-    }
+  @Get()
+  findAll() {
+    return this.roleService.getRoles();
+  }
 
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.roleService.getRoleById(id);
+  }
 
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.roleService.getRoleById(id);
-    }
-
-    @Post()
-    create(@Body() createRoleDto: CreateRoleDto) {
-        return this.roleService.save(createRoleDto);
-    }
+  @Post()
+  create(@Body() createRoleDto: CreateRoleDto) {
+    return this.roleService.save(createRoleDto);
+  }
 }

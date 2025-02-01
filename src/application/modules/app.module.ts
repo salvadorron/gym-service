@@ -31,14 +31,12 @@ import { PreflightMiddleware } from '../middlewares/preflight-middleware';
     PlanModule,
     ScheduleModule,
     TrainingModule,
-  ]
+  ],
 })
 export class AppModule implements NestModule {
-
-  constructor () {}
+  constructor() {}
 
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(PreflightMiddleware).forRoutes("*")
+    consumer.apply(PreflightMiddleware).forRoutes('*');
   }
-  
 }

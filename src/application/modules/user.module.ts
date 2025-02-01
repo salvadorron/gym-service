@@ -8,7 +8,13 @@ import { LoginUserUseCase } from '../usecases/login-user.usecase';
 
 @Module({
   controllers: [UserController],
-  providers: [UserRepositoryImpl, UserService, PrismaService, BcryptService, LoginUserUseCase],
+  providers: [
+    UserRepositoryImpl,
+    UserService,
+    PrismaService,
+    BcryptService,
+    LoginUserUseCase,
+  ],
   exports: [UserService],
 })
 export class UserModule {}

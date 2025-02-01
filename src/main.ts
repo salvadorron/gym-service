@@ -6,15 +6,17 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  app.useGlobalPipes(new ValidationPipe({
-    transform: true
-  }))
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  );
   const config = new DocumentBuilder()
-  .setTitle('Gym Service')
-  .setDescription('The Gym Service API description')
-  .setVersion('1.0')
-  .addTag('gym-service')
-  .build();
+    .setTitle('Gym Service')
+    .setDescription('The Gym Service API description')
+    .setVersion('1.0')
+    .addTag('gym-service')
+    .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document, {
@@ -30,7 +32,7 @@ async function bootstrap() {
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
     ],
   });
-  
+
   await app.listen(4200);
 }
 bootstrap();

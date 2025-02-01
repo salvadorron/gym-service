@@ -5,8 +5,8 @@ import { TrainingService } from '../services/training/training.service';
 import { PrismaService } from '../../infrastructure/services/prisma/prisma.service';
 
 @Module({
-    controllers: [TrainingController],
-    providers: [TrainingRepositoryImpl, TrainingService, PrismaService],
-    exports: [TrainingService]
+  controllers: [TrainingController],
+  providers: [TrainingRepositoryImpl, TrainingService, PrismaService],
+  exports: [TrainingService],
 })
 export class TrainingModule {}

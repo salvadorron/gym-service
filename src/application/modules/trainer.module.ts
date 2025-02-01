@@ -12,9 +12,19 @@ import { ClientRepositoryImpl } from '../../infrastructure/repositories/client/c
 import PdfJsService from '../../infrastructure/services/pdf/pdf.service';
 
 @Module({
-    controllers: [TrainerController],
-    providers: [ TrainerRepositoryImpl, PdfJsService, TrainerService, UserRepositoryImpl, BcryptService, ClientService, ClientRepositoryImpl, UserService, PrismaService, AssignTrainerUseCase],
-    exports: [TrainerService]
-
+  controllers: [TrainerController],
+  providers: [
+    TrainerRepositoryImpl,
+    PdfJsService,
+    TrainerService,
+    UserRepositoryImpl,
+    BcryptService,
+    ClientService,
+    ClientRepositoryImpl,
+    UserService,
+    PrismaService,
+    AssignTrainerUseCase,
+  ],
+  exports: [TrainerService],
 })
 export class TrainerModule {}

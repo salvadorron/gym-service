@@ -4,21 +4,20 @@ import { CreateAttendenceDto } from '../../domain/model/attendence/create-attend
 
 @Controller('attendance')
 export class AttendanceController {
+  constructor(private readonly attendanceServide: AttendanceService) {}
 
-    constructor(private readonly attendanceServide: AttendanceService){}
+  @Post()
+  async create(@Body() createAttendanceDto: CreateAttendenceDto) {
+    return this.attendanceServide.save(createAttendanceDto);
+  }
 
-    @Post()
-    async create(@Body() createAttendanceDto: CreateAttendenceDto) {
-        return this.attendanceServide.save(createAttendanceDto);
-    }
+  @Get()
+  async findAll() {
+    return this.attendanceServide.getAttendances();
+  }
 
-    @Get()
-    async findAll() {
-        return this.attendanceServide.getAttendances();
-    }
-
-    @Get(':id')
-    async findById(@Param('id') id: string) {
-        return this.attendanceServide.getAttendanceById(id);
-    }
+  @Get(':id')
+  async findById(@Param('id') id: string) {
+    return this.attendanceServide.getAttendanceById(id);
+  }
 }

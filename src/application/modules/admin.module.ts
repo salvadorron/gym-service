@@ -8,8 +8,15 @@ import { UserService } from '../services/user/user.service';
 import { PrismaService } from '../../infrastructure/services/prisma/prisma.service';
 
 @Module({
-    controllers: [AdminController,],
-    providers: [AdminRepositoryImpl, AdminService, UserRepositoryImpl, BcryptService, UserService, PrismaService],
-    exports: [AdminService]
+  controllers: [AdminController],
+  providers: [
+    AdminRepositoryImpl,
+    AdminService,
+    UserRepositoryImpl,
+    BcryptService,
+    UserService,
+    PrismaService,
+  ],
+  exports: [AdminService],
 })
 export class AdminModule {}
