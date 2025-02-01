@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PDFService } from 'src/domain/services/pdf.service';
 import * as pdf from 'pdfjs';
-import helvetica from 'pdfjs/font/helvetica';
+import helvetica from 'pdfjs/font/Helvetica';
 
 enum DayTurn {
   D = 'DIA',
