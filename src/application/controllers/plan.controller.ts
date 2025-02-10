@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PlanService } from '../services/plan/plan.service';
 import { CreatePlanDto } from '../../domain/model/plan/create-plan.dto';
+import { Training } from '@prisma/client';
 
 @Controller('plan')
 export class PlanController {
@@ -10,8 +11,8 @@ export class PlanController {
     ){}
 
     @Post()
-    async create(@Body() createPlanDto: CreatePlanDto) {
-        return this.planService.save(createPlanDto);
+    async create(@Body() plan: { name: string, features: string, price: string, duration: string, trainings: Training[] }) {
+        return this.planService.save(plan);
     }
 
     @Get()

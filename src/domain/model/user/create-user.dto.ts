@@ -45,4 +45,77 @@ export class CreateUserDto {
     })
     role_id: string;
 
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    medical_conditions: string
+
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    weigth: string
+
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    heigth: string
+
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+        zip_code: string
+
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    city: string
+
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    address: string
+
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    specialty: string
+    
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    state_id: string
+    
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    municipality_id: string
+
+    @IsString()
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is a example'
+    })
+    parrish_id: string
+
+
+
+
 }

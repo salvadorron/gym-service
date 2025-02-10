@@ -1,40 +1,45 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsString } from "class-validator";
+import { IsEnum, IsNumber, IsString } from "class-validator";
 
 export class CreateExcersiseDto {
+    @ApiProperty()
     @IsString()
-    @ApiProperty({
-        description: 'the name of the excersise',
-        example: 'Bench Press'
-    })
-    name: string;
+    description: string
     
+    @ApiProperty({
+        description: "the difficulty of the excersise",
+        enum: ["BEGGINER", "INTERMEDIATE", "ADVANCED"],
+        example: "BEGGINER"
+    })
+    @IsEnum(["BEGGINER", "INTERMEDIATE", "ADVANCED"])
+    difficulty: "BEGGINER" | "INTERMEDIATE" | "ADVANCED"
+    
+    @ApiProperty({
+        example: "bench press",
+        description: "the equipment of the excersise",
+    })
     @IsString()
-    @ApiProperty({
-        description: 'the description of the excersise',
-        example: 'this is a bench press'
-    })
-    description: string;
+    equipment: string
 
-    @IsNumber()
     @ApiProperty({
-        description: 'the sets of the excersise',
-        example: 3
+        example: "chest",
+        description: "the muscle group of the excersise",
     })
-    series: number
+    @IsString()
+    muscleGroup: string
     
-    @IsNumber()
     @ApiProperty({
-        description: 'the reps of the excersise',
-        example: 4
+        example: "bench press",
+        description: "the name of the excersise",
     })
-    repeats: number
-
-    @IsNumber()
+    @IsString()
+    name: string
+    
     @ApiProperty({
-        description: 'the training id associated of the excersise',
-        example: '1'
+        example: "duration",
+        description: "the type of the excersise",
     })
-    trainingId: number
+    @IsString()
+    type: string
 
 }

@@ -8,7 +8,7 @@ import { PrismaService } from "../../../infrastructure/services/prisma/prisma.se
 export class PlanRepositoryImpl implements PlanRepository {
     constructor(private prisma: PrismaService) {}
     async save(data: Prisma.PlanCreateInput): Promise<Plan> {
-        const plan = await this.prisma.plan.create({ data });
+        const plan = await this.prisma.plan.create({ data, include: {trainings: true} });
         return plan;
     }
 

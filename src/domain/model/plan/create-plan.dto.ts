@@ -14,33 +14,19 @@ export class CreatePlanDto {
         description: 'the description of the plan',
         example: 'This is a description of the plan'
     })
-    description: string;
-    
-    @IsNumber()
-    @ApiProperty({
-        description: 'the client id associated of the plan',
-        example: '1'
-    })
-    clientId: number;
-
-    @IsNumber()
-    @ApiProperty({
-        description: 'the trainer id associated of the plan',
-        example: 1
-    })
-    trainerId: number
+    features: string;
 
     @IsNumberString()
     @ApiProperty({
         description: 'the amount of the plan',
     })
-    amount: number
+    price: string
 
     @IsString()
     @ApiProperty({
         description: 'the billing interval of the plan'
     })
-    billing_interval: string
+    duration: string
 
 
 

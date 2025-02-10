@@ -13,6 +13,9 @@ import { ScheduleModule } from './schedule.module';
 import { ExcersiseModule } from './excersise.module';
 import { TrainingModule } from './training.module';
 import { PreflightMiddleware } from '../middlewares/preflight-middleware';
+import { ParrishModule } from './parrish.module';
+import { MunicipalityModule } from './municipality.module';
+import { StateModule } from './state.module';
 
 @Module({
   imports: [
@@ -31,6 +34,9 @@ import { PreflightMiddleware } from '../middlewares/preflight-middleware';
     PlanModule,
     ScheduleModule,
     TrainingModule,
+    ParrishModule,
+    MunicipalityModule,
+    StateModule
   ]
 })
 export class AppModule implements NestModule {

@@ -15,6 +15,14 @@ export class CreateTrainingDto {
         description: 'indicates the name of training',
         example: false
     })
-    name: string
+    name: string;
+
+
+    @IsString()
+    @ApiProperty({
+        description: 'indicates the description of training',
+        example: 'this is example'
+    })
+    description: string;
 
 }

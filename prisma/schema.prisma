@@ -14,6 +14,23 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum Difficulty {
+  BEGGINER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum Intencity {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum GENDER {
+  MALE
+  FEMALE
+}
+
 model Role {
   id String @id
   name String
@@ -29,6 +46,20 @@ model User {
   age Int
   role Role? @relation(fields: [role_id], references: [id])
   role_id String
+  weigth Int
+  heigth Int
+  gender GENDER @default(MALE)
+  medical_conditions String?
+  state State @relation(fields: [state_id], references: [id])
+  state_id Int
+  municipality Municipality @relation(fields: [municipality_id], references: [id])
+  municipality_id Int
+  parrish Parrish @relation(fields: [parrish_id], references: [id])
+  parrish_id Int
+  city String
+  zip_code String
+  address String
+  specialty String
   client Client?
   trainer Trainer?
   admin Admin?
@@ -73,28 +104,37 @@ model Plan {
   clients Client[]
   trainings Training[]
   name String
-  description String
-  billing_interval String
-  amount Decimal
+  features String
+  duration String
+  price Decimal
 
 }
 
 model Training {
   id Int @id @default(autoincrement())
-  plan Plan @relation(fields: [plan_id], references: [id])
-  plan_id Int
   name String
+  description String
   excersises Excersise[]
   schedule Schedule?
+  plan Plan? @relation(fields: [plan_id], references: [id])
+  plan_id Int?
 }
 
 model Excersise {
   id Int @id @default(autoincrement())
   name String
   description String?
-  repeats Int @default(0)
-  series Int @default(0)
+  difficulty Difficulty @default(BEGGINER)
+  equipment String @default("dumbbells")
+  muscleGroup String @default("legs")
+  type String @default("repetitions")
+  weight Int @default(0)
+  reps Int @default(0)
+  sets Int @default(0)
+  notes String?
+  distance Int @default(0)
   duration Int @default(0)
+  intensity Intencity?
   trainings Training[]
 }
 
@@ -139,3 +179,26 @@ model Day {
 }
 
 
+model Municipality {
+  id Int @id @default(autoincrement())
+  name String
+  parrishes Parrish[]
+  state State @relation(fields: [state_id], references: [id])
+  state_id Int
+  users User[]
+}
+
+model Parrish {
+  id Int @id @default(autoincrement())
+  name String
+  municipality Municipality @relation(fields: [municipality_id], references: [id])
+  municipality_id Int
+  users User[]
+}
+
+model State {
+  id Int @id @default(autoincrement())
+  name String
+  municipalities Municipality[]
+  users User[]
+}

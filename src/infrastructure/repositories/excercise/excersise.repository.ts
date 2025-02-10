@@ -6,6 +6,10 @@ import { PrismaService } from "../../../infrastructure/services/prisma/prisma.se
 @Injectable()
 export class ExcersiseRepositoryImpl implements ExcersiseRepository {
     constructor(private prisma: PrismaService) {}
+    async update(data: Prisma.ExcersiseUpdateInput, id: number): Promise<Excersise> {
+        const prismaExcercise = await this.prisma.excersise.update({ data, where: { id } });
+        return prismaExcercise;
+    }
     
     async save(data: Prisma.ExcersiseCreateInput): Promise<Excersise> {
         const prismaExcersise = await this.prisma.excersise.create({ data });

@@ -1,24 +1,18 @@
 import { Injectable } from "@nestjs/common";
 import { Client, Plan, Training } from "@prisma/client"
-import { CreatePlanDto } from "src/domain/model/plan/create-plan.dto";
 import { PlanRepositoryImpl } from "src/infrastructure/repositories/plan/plan.repository";
 
 
 @Injectable()
 export class PlanService {
     constructor(private planRepository: PlanRepositoryImpl) {}
-    async save(data: CreatePlanDto): Promise<Plan> {
+    async save(planDto: { name: string, features: string, price: string, duration: string, trainings: Training[] }): Promise<Plan> {
         const plan = await this.planRepository.save({
-            clients: {
-                connect: {
-                    id: data.clientId
-                }
-            },
-            
-            name: data.name,
-            billing_interval: data.billing_interval,
-            description: data.description,
-            amount: data.amount,
+            name: planDto.name,
+            features: planDto.features,
+            price: +planDto.price,
+            duration: planDto.duration,
+            trainings: { connect: planDto.trainings.map(training => ({ id: +training.id })) }
         });
         return plan;
     }

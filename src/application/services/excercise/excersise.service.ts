@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Excersise } from "@prisma/client"
+import { Excersise, Prisma } from "@prisma/client"
 import { CreateExcersiseDto } from "src/domain/model/excersise/create-excercise.dto";
 import { ExcersiseRepositoryImpl } from "src/infrastructure/repositories/excercise/excersise.repository";
 
@@ -11,12 +11,50 @@ export class ExcersiseService {
         const prismaExcersise = await this.excersiseRepository.save({
             name: createExcersiseDto.name,
             description: createExcersiseDto.description,
-            repeats: createExcersiseDto.repeats,
-            series: createExcersiseDto.series,
-            trainings: { connect: { id: createExcersiseDto.trainingId } },
+            difficulty: createExcersiseDto.difficulty,
+            equipment: createExcersiseDto.equipment,
+            muscleGroup: createExcersiseDto.muscleGroup,
+            type: createExcersiseDto.type
         });
         return prismaExcersise;
     }
+
+    async update(exercise: Excersise): Promise<Excersise> {
+        const {
+            id,
+            description,
+            difficulty,
+            distance,
+            duration,
+            equipment,
+            intensity,
+            muscleGroup,
+            name,
+            notes,
+            reps,
+            sets,
+            type,
+            weight
+        } = exercise;
+        const prismaExcercise = await this.excersiseRepository.update(
+            {
+                description,
+                difficulty,
+                distance,
+                duration,
+                equipment,
+                intensity,
+                muscleGroup,
+                name,
+                notes,
+                reps,
+                sets,
+                type,
+                weight
+            }, +id);
+        return prismaExcercise;
+    }
+
     async getExcersises(): Promise<Excersise[]> {
         const prismaExcersises = await this.excersiseRepository.getExcersises();
         return prismaExcersises;
