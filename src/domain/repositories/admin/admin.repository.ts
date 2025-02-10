@@ -1,8 +1,7 @@
-import { Admin, Prisma } from "@prisma/client";
+import { Admin, Prisma } from '@prisma/client';
 
 export interface AdminRepository {
-    save(data: Prisma.AdminCreateInput): Promise<Admin>;
-    getAdmins(): Promise<Admin[]>;
-    getAdminById(id: number): Promise<Admin>;
-    
+  save(data: Prisma.AdminCreateInput): Promise<Admin>;
+  getAdmins(): Promise<Admin[]>;
+  getAdminById(id: number): Promise<Admin>;
 }

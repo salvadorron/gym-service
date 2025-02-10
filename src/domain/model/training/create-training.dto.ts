@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsNumber, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsNumber } from 'class-validator';
 
 export class CreateTrainingDto {
     @IsNumber()
@@ -25,4 +25,10 @@ export class CreateTrainingDto {
     })
     description: string;
 
+  @IsBoolean()
+  @ApiProperty({
+    description: 'indicates the name of training',
+    example: false,
+  })
+  name: string;
 }

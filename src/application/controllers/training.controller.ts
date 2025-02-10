@@ -11,15 +11,15 @@ export class TrainingController {
         private readonly registerTrainingUseCase: RegisterTrainingUseCase
     ){}
 
-    @Post()
-    async create(@Body() createTrainingDto: CreateTrainingDto) {
-        return this.trainingService.save(createTrainingDto);
-    }
+  @Post()
+  async create(@Body() createTrainingDto: CreateTrainingDto) {
+    return this.trainingService.save(createTrainingDto);
+  }
 
-    @Get()
-    async findAll() {
-        return this.trainingService.getTrainings();
-    }
+  @Get()
+  async findAll() {
+    return this.trainingService.getTrainings();
+  }
 
     @Post('register')
     async registerTraining(@Body() data: { name: string, description: string, exercises: Excersise[] }) {

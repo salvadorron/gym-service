@@ -5,10 +5,7 @@ import { Training } from '@prisma/client';
 
 @Controller('plan')
 export class PlanController {
-
-    constructor(
-        private readonly planService: PlanService
-    ){}
+  constructor(private readonly planService: PlanService) {}
 
     @Post()
     async create(@Body() plan: { name: string, features: string, price: string, duration: string, trainings: Training[] }) {

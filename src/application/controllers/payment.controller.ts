@@ -4,22 +4,20 @@ import { CreatePaymentDto } from '../../domain/model/payment/create-payment.dto'
 
 @Controller('payment')
 export class PaymentController {
+  constructor(private readonly paymentService: PaymentService) {}
 
-    constructor(private readonly paymentService: PaymentService){}
+  @Post()
+  async create(@Body() createPaymentDto: CreatePaymentDto) {
+    return this.paymentService.save(createPaymentDto);
+  }
 
-    @Post()
-    async create(@Body() createPaymentDto: CreatePaymentDto) {
-        return this.paymentService.save(createPaymentDto);
-    }
+  @Get()
+  async findAll() {
+    return this.paymentService.getPayments();
+  }
 
-    @Get()
-    async findAll() {
-        return this.paymentService.getPayments();
-    }
-
-    @Get(':id')
-    async findById(@Param('id') id: string) {
-        return this.paymentService.getPaymentById(id);
-    }
-
+  @Get(':id')
+  async findById(@Param('id') id: string) {
+    return this.paymentService.getPaymentById(id);
+  }
 }

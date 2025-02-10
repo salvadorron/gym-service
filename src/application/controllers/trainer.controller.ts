@@ -4,26 +4,23 @@ import { TrainerService } from '../services/trainer/trainer.service';
 
 @Controller('trainer')
 export class TrainerController {
+  constructor(private readonly trainerService: TrainerService) {}
 
+  @Post()
+  async create(@Body() createTrainerDto: CreateTrainerDto) {
+    const newTrainer = await this.trainerService.save(createTrainerDto);
+    return newTrainer;
+  }
 
-    constructor(private readonly trainerService: TrainerService) {}
+  @Get()
+  async findAll() {
+    const trainers = await this.trainerService.getTrainers();
+    return trainers;
+  }
 
-    @Post()
-    async create(@Body() createTrainerDto: CreateTrainerDto) {
-        const newTrainer = await this.trainerService.save(createTrainerDto);
-        return newTrainer;
-    }
-
-    @Get()
-    async findAll() {
-        const trainers = await this.trainerService.getTrainers();
-        return trainers;
-    }
-
-    @Get(':id')
-    async findById(@Param('id') id: string) {
-        const trainer = await this.trainerService.getTrainerById(id);
-        return trainer;
-    }
-
+  @Get(':id')
+  async findById(@Param('id') id: string) {
+    const trainer = await this.trainerService.getTrainerById(id);
+    return trainer;
+  }
 }

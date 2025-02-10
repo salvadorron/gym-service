@@ -1,3 +1,3 @@
 export interface PDFService {
-    buildSchedule(data: any): Promise<Buffer>;
+  buildSchedule(data: any): Promise<Buffer>;
 }

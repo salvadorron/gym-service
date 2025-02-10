@@ -4,21 +4,20 @@ import { CreateExcersiseDto } from '../../domain/model/excersise/create-excercis
 
 @Controller('excersise')
 export class ExcersiseController {
-    
-    constructor(private readonly excersiseService: ExcersiseService){}
+  constructor(private readonly excersiseService: ExcersiseService) {}
 
-    @Post()
-    async create(@Body() createExcersiseDto: CreateExcersiseDto) {
-        return this.excersiseService.save(createExcersiseDto);
-    }
+  @Post()
+  async create(@Body() createExcersiseDto: CreateExcersiseDto) {
+    return this.excersiseService.save(createExcersiseDto);
+  }
 
-    @Get()
-    async findAll() {
-        return this.excersiseService.getExcersises();
-    }
+  @Get()
+  async findAll() {
+    return this.excersiseService.getExcersises();
+  }
 
-    @Get(':id')
-    async findById(@Param('id') id: string) {
-        return this.excersiseService.getExcersiseById(id);
-    }
+  @Get(':id')
+  async findById(@Param('id') id: string) {
+    return this.excersiseService.getExcersiseById(id);
+  }
 }

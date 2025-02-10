@@ -5,8 +5,8 @@ import { DayService } from '../services/day/day.service';
 import { PrismaService } from '../../infrastructure/services/prisma/prisma.service';
 
 @Module({
-    controllers: [DayController],
-    providers: [DayRepositoryImpl, DayService, PrismaService],
-    exports: [DayService]
+  controllers: [DayController],
+  providers: [DayRepositoryImpl, DayService, PrismaService],
+  exports: [DayService],
 })
 export class DayModule {}

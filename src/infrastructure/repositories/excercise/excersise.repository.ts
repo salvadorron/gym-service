@@ -1,7 +1,7 @@
-import { HttpException, Injectable } from "@nestjs/common";
-import { Excersise, Prisma } from "@prisma/client"
-import { ExcersiseRepository } from "../../../domain/repositories/excercise/excersise.repository";
-import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
+import { HttpException, Injectable } from '@nestjs/common';
+import { Excersise, Prisma } from '@prisma/client';
+import { ExcersiseRepository } from '../../../domain/repositories/excercise/excersise.repository';
+import { PrismaService } from '../../../infrastructure/services/prisma/prisma.service';
 
 @Injectable()
 export class ExcersiseRepositoryImpl implements ExcersiseRepository {

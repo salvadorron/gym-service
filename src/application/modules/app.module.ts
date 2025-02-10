@@ -40,11 +40,9 @@ import { StateModule } from './state.module';
   ]
 })
 export class AppModule implements NestModule {
-
-  constructor () {}
+  constructor() {}
 
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(PreflightMiddleware).forRoutes("*")
+    consumer.apply(PreflightMiddleware).forRoutes('*');
   }
-  
 }

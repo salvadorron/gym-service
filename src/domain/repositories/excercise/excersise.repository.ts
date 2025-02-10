@@ -1,4 +1,4 @@
-import { Excersise, Prisma } from "@prisma/client"
+import { Excersise, Prisma } from '@prisma/client';
 
 export interface ExcersiseRepository {
     save(data: Prisma.ExcersiseCreateInput): Promise<Excersise>
