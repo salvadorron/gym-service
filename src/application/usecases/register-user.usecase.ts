@@ -10,18 +10,29 @@ export class RegisterUserClientUseCase {
     private readonly clientService: ClientService,
   ) {}
 
-    async execute({ state_id, municipality_id, parrish_id, username, password, age, last_name, name, weigth, heigth, city, zip_code, address, specialty }: RegisterUserClientDto) {
+    async execute({ state_id, municipality_id, parrish_id, username, password, gender, age, last_name, name, weight, height, city, zip_code, address, medical_conditions }: RegisterUserClientDto) {
         const user = await this.userService.save({
-            username, password, age, last_name, name, weigth: +weigth, heigth: +heigth, city, zip_code, address, specialty,
+            username,
+            password, 
+            age, 
+            last_name, 
+            name, 
+            weight, 
+            height, 
+            city, 
+            zip_code, 
+            address,
+            medical_conditions,
+            gender,
             role: { connectOrCreate: { where: { id: 'client' }, create: { id: 'client', name: 'Cliente' } } },
             state: {
-                connect: {id: +state_id}
+                connect: { id: state_id }
             },
             municipality: {
-                connect: {id: +municipality_id}
+                connect: { id: municipality_id }
             },
             parrish: {
-                connect: {id: +parrish_id}
+                connect: { id: parrish_id }
             }
         });
         await this.clientService.save({ trainingProgress: 0, userId: user.getId()})

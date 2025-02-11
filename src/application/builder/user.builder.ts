@@ -6,3 +6,4 @@ export class UserBuilder {
     return new UserEntity(user);
   }
 }
+ 

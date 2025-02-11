@@ -50,6 +50,16 @@ export class UserRepositoryImpl implements UserRepository {
       name: prismaUser.name,
       role_id: prismaUser.role_id,
       password: prismaUser.password,
+      gender: prismaUser.gender,
+      medical_conditions: prismaUser.medical_conditions,
+      state_id: prismaUser.state_id,
+      municipality_id: prismaUser.municipality_id,
+      parrish_id: prismaUser.parrish_id,
+      city: prismaUser.city,
+      zip_code: prismaUser.zip_code,
+      address: prismaUser.address,
+      weight: prismaUser.weight,
+      height: prismaUser.height
     });
     return user;
   }

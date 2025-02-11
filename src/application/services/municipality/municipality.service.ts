@@ -11,15 +11,11 @@ export class MunicipalityService {
         return this.municipalityRepository.create({ name: createMunicipalityDto.name, state: { connect: { id: createMunicipalityDto.stateId } } });
     }
 
-    async getMunicipalities(): Promise<Municipality[]> {
-        return this.municipalityRepository.findAll();
+    async getMunicipalities(params?: Partial<CreateMunicipalityDto>): Promise<Municipality[]> {
+        return this.municipalityRepository.findAll(params);
     }
 
     async getMunicipalityById(id: string): Promise<Municipality | null> {
         return this.municipalityRepository.findById(+id);
-    }
-
-    async getMunicipalitiesByState(stateId: number): Promise<Municipality[]> {
-        return this.municipalityRepository.findByState(stateId);
     }
 }

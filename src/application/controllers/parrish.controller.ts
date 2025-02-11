@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ParrishService } from '../services/parrish/parrish.service';
 import { CreateParrishDto } from '../../domain/model/parrish/create-parrish.dto';
 
@@ -12,13 +12,10 @@ export class ParrishController {
     }
 
     @Get()
-    findAll() {
-        return this.parrishService.getParrishes();
-    }
-
-    @Get('/municipality/:municipalityId')
-    findByMunicipality(@Param('municipalityId') municipalityId: string) {
-        return this.parrishService.getParrishesByMunicipality(+municipalityId)
+    findAll(
+        @Query() params?: Partial<CreateParrishDto>
+    ) {
+        return this.parrishService.getParrishes(params);
     }
 
     @Get(':id')

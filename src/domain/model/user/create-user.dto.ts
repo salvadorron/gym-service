@@ -57,14 +57,14 @@ export class CreateUserDto {
         description: 'example field',
         example: 'this is a example'
     })
-    weigth: string
+    weight: string
 
     @IsString()
     @ApiProperty({
         description: 'example field',
         example: 'this is a example'
     })
-    heigth: string
+    height: string
 
     @IsString()
     @ApiProperty({

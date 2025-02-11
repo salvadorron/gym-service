@@ -11,15 +11,11 @@ export class ParrishService {
         return this.parrishRepository.create({ name: createParrishDto.name, municipality_id: +createParrishDto.municipalityId, id: +createParrishDto.id });
     }
 
-    async getParrishes(): Promise<Parrish[]> {
-        return this.parrishRepository.findAll();
+    async getParrishes(params?: Partial<CreateParrishDto>): Promise<Parrish[]> {
+        return this.parrishRepository.findAll(params);
     }
 
     async getParrishById(id: string): Promise<Parrish | null> {
         return this.parrishRepository.findById(id);
-    }
-
-    async getParrishesByMunicipality(municipalityId: number): Promise<Parrish[]> {
-        return this.parrishRepository.findByMunicipality(municipalityId);
     }
 }

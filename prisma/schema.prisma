@@ -46,8 +46,8 @@ model User {
   age Int
   role Role? @relation(fields: [role_id], references: [id])
   role_id String
-  weigth Int
-  heigth Int
+  weight Int
+  height Int
   gender GENDER @default(MALE)
   medical_conditions String?
   state State @relation(fields: [state_id], references: [id])
@@ -59,7 +59,6 @@ model User {
   city String
   zip_code String
   address String
-  specialty String
   client Client?
   trainer Trainer?
   admin Admin?

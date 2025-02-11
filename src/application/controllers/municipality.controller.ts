@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { MunicipalityService } from '../services/municipality/municipality.service';
 import { CreateMunicipalityDto } from '../../domain/model/municipality/create-municipality.dto';
 
@@ -12,13 +12,10 @@ export class MunicipalityController {
     }
 
     @Get()
-    findAll() {
-        return this.municipalityService.getMunicipalities();
-    }
-
-    @Get('/state/:stateId')
-    findByState(@Param('stateId') stateId: string) {
-        return this.municipalityService.getMunicipalitiesByState(+stateId);
+    findAll(
+        @Query() params?: Partial<CreateMunicipalityDto> 
+    ) {
+        return this.municipalityService.getMunicipalities(params);
     }
 
     @Get(':id')

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { IsEnum, IsNumber, IsString } from 'class-validator';
 
 export class RegisterUserClientDto {
   @IsString()
@@ -36,13 +36,6 @@ export class RegisterUserClientDto {
         example: 'dwunkhh343+'
     })
     password: string;
-    
-    @IsString()
-    @ApiProperty({
-        description: 'role_id of the user',
-        example: 'client'
-    })
-    role_id: string;
 
     @IsString()
     @ApiProperty({
@@ -51,19 +44,19 @@ export class RegisterUserClientDto {
     })
     medical_conditions: string
 
-    @IsString()
+    @IsNumber()
     @ApiProperty({
         description: 'example field',
         example: 'this is a example'
     })
-    weigth: string
+    weight: number
 
-    @IsString()
+    @IsNumber()
     @ApiProperty({
         description: 'example field',
         example: 'this is a example'
     })
-    heigth: string
+    height: number
 
     @IsString()
     @ApiProperty({
@@ -85,33 +78,34 @@ export class RegisterUserClientDto {
         example: 'this is a example'
     })
     address: string
-
-    @IsString()
-    @ApiProperty({
-        description: 'example field',
-        example: 'this is a example'
-    })
-    specialty: string
     
-    @IsString()
+    @IsNumber()
     @ApiProperty({
         description: 'example field',
         example: 'this is a example'
     })
-    state_id: string
+    state_id: number
     
-    @IsString()
+    @IsNumber()
     @ApiProperty({
         description: 'example field',
         example: 'this is a example'
     })
-    municipality_id: string
+    municipality_id: number
 
-    @IsString()
+    @IsNumber()
     @ApiProperty({
         description: 'example field',
         example: 'this is a example'
     })
-    parrish_id: string
+    parrish_id: number
+
+    @IsEnum(["MALE","FEMALE"])
+    @ApiProperty({
+        description: 'example field',
+        example: 'this is example'
+    })
+    gender: "MALE" | "FEMALE"
+
 
 }

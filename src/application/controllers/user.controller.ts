@@ -40,7 +40,9 @@ export class UserController {
     async create(@Body() createUserDto: CreateUserDto) {
         const newUser = await this.userService.save({
             address: createUserDto.address,
-            age: createUserDto.age, city: createUserDto.city, heigth: +createUserDto.heigth,
+            age: createUserDto.age, 
+            city: createUserDto.city,
+            height: +createUserDto.height,
             last_name: createUserDto.last_name, name: createUserDto.name,
             medical_conditions: createUserDto.medical_conditions,
             state: {connect: {id: +createUserDto.state_id}},
@@ -49,8 +51,7 @@ export class UserController {
             role: { connect: { id: createUserDto.role_id } },
             password: createUserDto.password,
             username: createUserDto.username,
-            specialty: createUserDto.specialty,
-            weigth: +createUserDto.weigth,
+            weight: +createUserDto.weight,
             zip_code: createUserDto.zip_code,
             
         });
