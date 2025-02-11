@@ -2,12 +2,15 @@ import { Body, Controller, Get, Header, Param, Post, Query } from '@nestjs/commo
 import { CreateUserDto } from '../../domain/model/user/create-user.dto';
 import { UserService } from '../services/user/user.service';
 import { LoginUserUseCase } from '../usecases/login-user.usecase';
+import { RegisterMemberDto } from 'src/domain/model/user/register-member.dto';
+import { RegisterMemberUseCase } from '../usecases/register-member.usecase';
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly loginUserUsecase: LoginUserUseCase,
+    private readonly registerMemberUsecase: RegisterMemberUseCase
   ) {}
 
   @Get()
@@ -20,6 +23,14 @@ export class UserController {
   async findByUsername(@Param('username') username: string) {
     const user = await this.userService.getUserByUsername(username);
     return user.toSnapshot();
+  }
+
+  @Post('register-member')
+  async registerMember(
+    @Body() props: RegisterMemberDto
+  ) {
+    const member = await this.registerMemberUsecase.execute(props);
+    return member.toSnapshot()
   }
 
   @Get('by-id/:id')
