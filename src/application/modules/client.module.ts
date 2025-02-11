@@ -15,6 +15,9 @@ import { ScheduleRepositoryImpl } from 'src/infrastructure/repositories/schedule
 import { PlanService } from '../services/plan/plan.service';
 import { PlanRepositoryImpl } from 'src/infrastructure/repositories/plan/plan.repository';
 import PdfJsService from '../../infrastructure/services/pdf/pdf.service';
+import { RegisterMemberUseCase } from '../usecases/register-member.usecase';
+import { AdminService } from '../services/admin/admin.service';
+import { AdminRepositoryImpl } from 'src/infrastructure/repositories/admin/admin.repository';
 
 @Module({
   controllers: [ClientController],
@@ -30,10 +33,13 @@ import PdfJsService from '../../infrastructure/services/pdf/pdf.service';
     BcryptService,
     UserService,
     PrismaService,
+    AdminService,
+    AdminRepositoryImpl,
     TrainerRepositoryImpl,
     TrainerService,
     RegisterUserClientUseCase,
     AssignTrainerUseCase,
+    RegisterMemberUseCase
   ],
   exports: [ClientService],
 })

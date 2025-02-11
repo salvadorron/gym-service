@@ -109,7 +109,7 @@ export class RegisterMemberDto {
     })
     parrish_id: number
 
-    @IsEnum(["MALE","FEMAlE"])
+    @IsEnum(["MALE","FEMALE"])
     @ApiProperty({
         description: 'example field',
         example: 'this is a example'
