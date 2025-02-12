@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { UserEntity } from 'src/domain/model/user/user.entity';
 import { UserRepositoryImpl } from 'src/infrastructure/repositories/user/user.repository';
 
@@ -11,8 +11,16 @@ export class UserService {
     return this.userRepository.save(data);
   }
 
+  async update(data: Prisma.UserUpdateInput, id: number) {
+    return this.userRepository.update(data, id);
+  }
+
   async getUsers(trainerId?: number): Promise<UserEntity[]> {
     return this.userRepository.getUsers(trainerId);
+  }
+
+  async delete(id: number): Promise<User>{
+    return this.userRepository.delete(id);
   }
 
   async getUserById(id: string): Promise<UserEntity> {

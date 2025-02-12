@@ -1,16 +1,18 @@
-import { Body, Controller, Get, Header, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Header, Param, Patch, Post, Query } from '@nestjs/common';
 import { CreateUserDto } from '../../domain/model/user/create-user.dto';
 import { UserService } from '../services/user/user.service';
 import { LoginUserUseCase } from '../usecases/login-user.usecase';
 import { RegisterMemberDto } from 'src/domain/model/user/register-member.dto';
 import { RegisterMemberUseCase } from '../usecases/register-member.usecase';
+import { UpdateMemberUseCase } from '../usecases/update-member.usecase';
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly loginUserUsecase: LoginUserUseCase,
-    private readonly registerMemberUsecase: RegisterMemberUseCase
+    private readonly registerMemberUsecase: RegisterMemberUseCase,
+    private readonly updateMemberUsecase: UpdateMemberUseCase
   ) {}
 
   @Get()
@@ -31,6 +33,23 @@ export class UserController {
   ) {
     const member = await this.registerMemberUsecase.execute(props);
     return member.toSnapshot()
+  }
+
+  @Patch('update-member/:id')
+  async updateMember(
+     @Param('id') id: string,
+     @Body() props: Partial<RegisterMemberDto>
+  ) {
+    const member = await this.updateMemberUsecase.execute(props, +id);
+    return member.toSnapshot();
+  }
+
+  @Delete('delete-member/:id')
+  async deleteMember(
+    @Param('id') id: string
+  ) {
+    const deletedMember = await this.userService.delete(+id)
+    return deletedMember
   }
 
   @Get('by-id/:id')

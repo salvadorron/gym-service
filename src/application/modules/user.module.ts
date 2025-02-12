@@ -13,6 +13,7 @@ import { TrainerService } from '../services/trainer/trainer.service';
 import { AdminService } from '../services/admin/admin.service';
 import { TrainerRepositoryImpl } from 'src/infrastructure/repositories/trainer/trainer.repository';
 import { AdminRepositoryImpl } from 'src/infrastructure/repositories/admin/admin.repository';
+import { UpdateMemberUseCase } from '../usecases/update-member.usecase';
 
 @Module({
   controllers: [UserController],
@@ -23,6 +24,7 @@ import { AdminRepositoryImpl } from 'src/infrastructure/repositories/admin/admin
     BcryptService,
     LoginUserUseCase,
     RegisterMemberUseCase,
+    UpdateMemberUseCase,
     TrainerService,
     AdminService,
     TrainerRepositoryImpl,
