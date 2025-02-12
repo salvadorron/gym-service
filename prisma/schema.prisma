@@ -59,6 +59,8 @@ model User {
   city String
   zip_code String
   address String
+  nutritional_plan_id Int?
+  nutritional_plan NutritionalPlan? @relation(fields: [nutritional_plan_id], references: [id])
   client Client?
   trainer Trainer?
   admin Admin?
@@ -67,20 +69,20 @@ model User {
 model Client {
   id Int @default(autoincrement()) @id
   training_progress Int @default(0)
-  user User? @relation(fields: [user_id], references: [id])
+  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id Int @unique
   plan Plan? @relation(fields: [plan_id], references: [id])
   plan_id Int?
   payments Payment[]
   attendances Attendance[]
-  trainer Trainer? @relation(fields: [trainer_id], references: [id])
+  trainer Trainer? @relation(fields: [trainer_id], references: [id], onDelete: Cascade)
   trainer_id Int?
 }
 
 model Trainer {
   id Int @default(autoincrement()) @id
   speciality String
-  user User? @relation(fields: [user_id], references: [id])
+  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id Int @unique
   certificates Certificate[]
   clients Client[]
@@ -94,7 +96,7 @@ model Certificate {
 
 model Admin {
   id Int @default(autoincrement()) @id
-  user User? @relation(fields: [user_id], references: [id])
+  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id Int @unique
 }
 
@@ -146,7 +148,9 @@ model Payment {
   amount Decimal
   method String
   description String
-  date DateTime @db.Date
+  startDate DateTime @db.Date
+  endDate DateTime @db.Date
+  status String
 }
 
 
@@ -200,4 +204,16 @@ model State {
   name String
   municipalities Municipality[]
   users User[]
+}
+
+
+model NutritionalPlan {
+  id Int @id @default(autoincrement())
+  planType String
+  calories Int
+  startDate DateTime @db.Date
+  endDate DateTime @db.Date
+  status String
+  users User[]
+
 }

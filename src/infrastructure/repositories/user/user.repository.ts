@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { UserBuilder } from '../../../application/builder/user.builder';
 import { UserEntity } from '../../../domain/model/user/user.entity';
 import { UserRepository } from '../../../domain/repositories/user/user.repository';
@@ -12,6 +12,23 @@ export class UserRepositoryImpl implements UserRepository {
     private prisma: PrismaService,
     private bcrypt: BcryptService,
   ) {}
+  async delete(id: number): Promise<User> {
+    const deletedUser = await this.prisma.user.delete({ where: { id }})
+    return deletedUser
+  }
+  async update(data: Prisma.UserUpdateInput, id: number): Promise<UserEntity> {
+      const hashedPassword = await this.bcrypt.hash(data.password.toString())
+      const prismaUser = await this.prisma.user.update({
+        data: {
+          ...data,
+          password: hashedPassword
+        },
+        where: { id }
+      })
+
+      const user = UserBuilder.build(prismaUser);
+      return user
+  }
   async getUserById(id: string): Promise<UserEntity> {
     const prismaUser = await this.prisma.user.findFirst({
       where: { id: +id },
@@ -59,7 +76,8 @@ export class UserRepositoryImpl implements UserRepository {
       zip_code: prismaUser.zip_code,
       address: prismaUser.address,
       weight: prismaUser.weight,
-      height: prismaUser.height
+      height: prismaUser.height,
+      nutritional_plan_id: undefined
     });
     return user;
   }

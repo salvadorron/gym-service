@@ -17,10 +17,12 @@ export class ClientRepositoryImpl implements ClientRepository {
         plan: { connect: { id: planId } },
         payments: {
           create: {
-            date: new Date(),
+            startDate: new Date(),
+            endDate: new Date(),
             method: payment.method,
             description: payment.description,
             amount: payment.amount,
+            status: 'activo'
           },
         },
       },

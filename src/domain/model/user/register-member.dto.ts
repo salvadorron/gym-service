@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString, IsEnum } from 'class-validator';
+import { IsNumber, IsString, IsEnum, IsOptional } from 'class-validator';
 
 export class RegisterMemberDto {
   @IsString()
@@ -117,10 +117,11 @@ export class RegisterMemberDto {
     gender: "MALE" | "FEMALE"
 
     @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'example field',
         example: 'this is a example'
     })
-    specialty: string
+    specialty?: string
 
 }
