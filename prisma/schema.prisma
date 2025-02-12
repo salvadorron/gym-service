@@ -209,11 +209,15 @@ model State {
 
 model NutritionalPlan {
   id Int @id @default(autoincrement())
+  planName String
   planType String
   calories Int
   startDate DateTime @db.Date
   endDate DateTime @db.Date
+  breakfast String
+  lunch String
+  dinner String
+  snacks String
   status String
   users User[]
-
 }

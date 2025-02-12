@@ -16,8 +16,8 @@ export class UserController {
   ) {}
 
   @Get()
-  async findAll(@Query('trainerId') trainerId?: number) {
-    const users = await this.userService.getUsers(trainerId);
+  async findAll(@Query() params?: {trainerId?: number, roleId?: string}) {
+    const users = await this.userService.getUsers(params);
     return users.map((user) => user.toSnapshot());
   }
 

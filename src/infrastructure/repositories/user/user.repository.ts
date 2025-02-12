@@ -82,16 +82,24 @@ export class UserRepositoryImpl implements UserRepository {
     return user;
   }
 
-  async getUsers(trainerId?: number): Promise<UserEntity[]> {
+  async getUsers(params?: { trainerId?: number, roleId?: string }): Promise<UserEntity[]> {
     const where: Prisma.UserWhereInput = {};
 
-    if (trainerId) {
-      Object.assign(where, {
-        role_id: 'client',
-        client: {
-          trainer_id: trainerId,
-        },
-      });
+    if(params){
+      if(params.trainerId) {
+        Object.assign(where, {
+          client: {
+            trainer_id: params.trainerId
+          }
+        })
+
+      }
+
+      if(params.roleId){
+        Object.assign(where, {
+          role_id: params.roleId
+        })
+      }
     }
 
     const prismaUsers = await this.prisma.user.findMany({
@@ -99,6 +107,7 @@ export class UserRepositoryImpl implements UserRepository {
         client: { include: { payments: true, plan: true } },
         trainer: true,
         admin: true,
+        nutritional_plan: true
       },
       where,
     });

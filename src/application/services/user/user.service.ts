@@ -15,8 +15,8 @@ export class UserService {
     return this.userRepository.update(data, id);
   }
 
-  async getUsers(trainerId?: number): Promise<UserEntity[]> {
-    return this.userRepository.getUsers(trainerId);
+  async getUsers(params?: { trainerId?: number, roleId?: string}): Promise<UserEntity[]> {
+    return this.userRepository.getUsers(params);
   }
 
   async delete(id: number): Promise<User>{

@@ -1,4 +1,4 @@
-import { Admin, Client, Municipality, Parrish, State, Trainer, User } from '@prisma/client';
+import { Admin, Client, Municipality, NutritionalPlan, Parrish, State, Trainer, User } from '@prisma/client';
 
 export class UserEntity {
   private id: number;
@@ -15,10 +15,12 @@ export class UserEntity {
   private state_id: number;
   private municipality_id: number;
   private parrish_id: number;
+  private nutritional_plan_id: number;
   private city: string;
   private zip_code: string;
   private address: string;
   private state?: State;
+  private nutritional_plan?: NutritionalPlan;
   private municipality?: Municipality;
   private parrish?: Parrish;
   private client?: Client;
@@ -26,7 +28,7 @@ export class UserEntity {
   private admin?: Admin;
 
   constructor(
-    user: User & { client?: Client; trainer?: Trainer; admin?: Admin, parrish?: Parrish, municipality?: Municipality, state?: State },
+    user: User & { client?: Client; trainer?: Trainer; admin?: Admin, parrish?: Parrish, municipality?: Municipality, state?: State, nutritional_plan?: NutritionalPlan },
   ) {
     this.id = user.id;
     this.name = user.name;
@@ -42,12 +44,14 @@ export class UserEntity {
     this.state_id = user.state_id;
     this.municipality_id = user.municipality_id;
     this.parrish_id = user.parrish_id;
+    this.nutritional_plan_id = user.nutritional_plan_id;
     this.city = user.city;
     this.zip_code = user.zip_code;
     this.address = user.address;
     this.state = user.state ? user.state : undefined;
     this.municipality = user.municipality ? user.municipality : undefined;
     this.parrish = user.parrish ? user.parrish : undefined;
+    this.nutritional_plan = user.nutritional_plan ? user.nutritional_plan : undefined;
     this.client = user.client ? user.client : undefined;
     this.trainer = user.trainer ? user.trainer : undefined;
     this.admin = user.admin ? user.admin : undefined;
@@ -76,12 +80,14 @@ export class UserEntity {
       state_id: this.state_id,
       municipality_id: this.municipality_id,
       parrish_id: this.parrish_id,
+      nutritional_plan_id: this.nutritional_plan_id,
       city: this.city,
       zip_code: this.zip_code,
       address: this.address,
       state: this.state,
       municipality: this.municipality,
       parrish: this.parrish,
+      nutritional_plan: this.nutritional_plan,
       client: this.client,
       trainer: this.trainer,
       admin: this.admin
@@ -103,12 +109,14 @@ type UserEntityDto = {
   state_id: number
   municipality_id: number
   parrish_id: number
+  nutritional_plan_id: number,
   city: string
   zip_code: string
   address: string
   state?: State
   municipality?: Municipality
   parrish?: Parrish
+  nutritional_plan?: NutritionalPlan;
   client?: Client;
   trainer?: Trainer;
   admin?: Admin;

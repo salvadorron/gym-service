@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateNutritionalPlanDto } from '../../../domain/model/nutritional_plan/create-nutritional_plan.dto';
 import { UpdateNutritionalPlanDto } from '../../../domain/model/nutritional_plan/update-nutritional_plan.dto';
-import { NutritionalPlanRepository } from 'src/domain/repositories/nutritional_plan/nutritional_plan.repository';
+import { NutritionalPlanRepositoryImpl } from 'src/infrastructure/repositories/nutritional_plan/nutritional_plan.repository';
 
 @Injectable()
 export class NutritionalPlanService {
-  constructor(private readonly nutritionalRepository: NutritionalPlanRepository) {}
+  constructor(private readonly nutritionalRepository: NutritionalPlanRepositoryImpl) {}
   create(createNutritionalPlanDto: CreateNutritionalPlanDto) {
     return this.nutritionalRepository.create(createNutritionalPlanDto);
   }
