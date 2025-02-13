@@ -5,7 +5,7 @@ import { TrainingService } from '../services/training/training.service';
 import { PrismaService } from '../../infrastructure/services/prisma/prisma.service';
 import { RegisterTrainingUseCase } from '../usecases/register-training.usecase';
 import { ExcersiseService } from '../services/excercise/excersise.service';
-import { ExcersiseRepositoryImpl } from '../../../infrastructure/repositories/excercise/excersise.repository';
+import { ExcersiseRepositoryImpl } from '../../infrastructure/repositories/excercise/excersise.repository';
 
 @Module({
     controllers: [TrainingController],
