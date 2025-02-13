@@ -25,7 +25,7 @@ export class PlanRepositoryImpl implements PlanRepository {
       where: { id },
       include: { trainings: {include: {excersises: true, schedule: {include: {days: true}}}}, clients: true },
     });
-    if (!plan) throw new HttpException('Plan not found', 404);
+    if (!plan) throw new HttpException('Plan not found', 404); 
     return plan;
   }
 }

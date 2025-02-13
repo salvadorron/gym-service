@@ -16,7 +16,7 @@ export class TrainerRepositoryImpl implements TrainerRepository {
   }
   async getTrainers(): Promise<Trainer[]> {
     const trainers = await this.prisma.trainer.findMany({
-      include: { certificates: true, clients: true },
+      include: { certificates: true, clients: true, user: true },
     });
     return trainers;
   }

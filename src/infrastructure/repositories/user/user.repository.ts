@@ -33,9 +33,12 @@ export class UserRepositoryImpl implements UserRepository {
     const prismaUser = await this.prisma.user.findFirst({
       where: { id: +id },
       include: {
-        client: { include: { payments: true, plan: true } },
+        client: { include: { payments: true, plan: true,  } },
         trainer: true,
         admin: true,
+        state: true,
+        municipality: true,
+        parrish: true
       },
     });
     if (!prismaUser) throw new HttpException('User not found', 404);
@@ -45,9 +48,12 @@ export class UserRepositoryImpl implements UserRepository {
     const prismaUser = await this.prisma.user.findFirst({
       where: { username: username },
       include: {
-        client: { include: { payments: true, plan: true } },
+        client: { include: { payments: true, plan: true, trainer: true } },
         trainer: true,
         admin: true,
+        municipality: true,
+        state: true, 
+        parrish: true
       },
     });
     if (!prismaUser) throw new HttpException('User not found', 404);
@@ -89,7 +95,7 @@ export class UserRepositoryImpl implements UserRepository {
       if(params.trainerId) {
         Object.assign(where, {
           client: {
-            trainer_id: params.trainerId
+            trainer_id: +params.trainerId
           }
         })
 
@@ -104,10 +110,13 @@ export class UserRepositoryImpl implements UserRepository {
 
     const prismaUsers = await this.prisma.user.findMany({
       include: {
-        client: { include: { payments: true, plan: true } },
+        client: { include: { payments: true, plan: true, trainer: {include: {user: true}} } },
         trainer: true,
-        admin: true,
-        nutritional_plan: true
+        admin: true, 
+        nutritional_plan: true,
+        state: true,
+        parrish: true,
+        municipality: true
       },
       where,
     });
