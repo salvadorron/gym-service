@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Day } from '@prisma/client';
 import { CreateDayDto } from '../../../domain/model/day/create-day.dto';
-import { DayRepositoryImpl } from 'src/infrastructure/repositories/day/day.repository';
+import { DayRepositoryImpl } from '../../../infrastructure/repositories/day/day.repository';
 
 @Injectable()
 export class DayService {

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { PrismaService } from 'src/infrastructure/services/prisma/prisma.service';
+import { PrismaService } from '../../infrastructure/services/prisma/prisma.service';
 import { NutritionalPlanController } from '../controllers/nutritional_plan.controller';
 import { NutritionalPlanService } from '../services/nutritional_plan/nutritional_plan.service';
-import { NutritionalPlanRepositoryImpl } from 'src/infrastructure/repositories/nutritional_plan/nutritional_plan.repository';
+import { NutritionalPlanRepositoryImpl } from '../../infrastructure/repositories/nutritional_plan/nutritional_plan.repository';
 import { UserService } from '../services/user/user.service';
-import { UserRepositoryImpl } from 'src/infrastructure/repositories/user/user.repository';
-import { BcryptService } from 'src/infrastructure/services/bcrypt/bcrypt.service';
+import { UserRepositoryImpl } from '../../infrastructure/repositories/user/user.repository';
+import { BcryptService } from '../../infrastructure/services/bcrypt/bcrypt.service';
 
 @Module({
   controllers: [NutritionalPlanController],

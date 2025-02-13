@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { Trainer } from '@prisma/client';
 import { UserService } from '../user/user.service';
-import { TrainerRepositoryImpl } from 'src/infrastructure/repositories/trainer/trainer.repository';
+import { TrainerRepositoryImpl } from '../../../infrastructure/repositories/trainer/trainer.repository';
 import { CreateTrainerDto } from '../../../domain/model/trainer/create-trainer.dto';
 
 @Injectable()

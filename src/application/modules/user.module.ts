@@ -7,12 +7,12 @@ import { UserRepositoryImpl } from '../../infrastructure/repositories/user/user.
 import { LoginUserUseCase } from '../usecases/login-user.usecase';
 import { RegisterMemberUseCase } from '../usecases/register-member.usecase';
 import { ClientService } from '../services/client/client.service';
-import { ClientRepositoryImpl } from 'src/infrastructure/repositories/client/client.repository';
-import PdfJsService from 'src/infrastructure/services/pdf/pdf.service';
+import { ClientRepositoryImpl } from '../../../infrastructure/repositories/client/client.repository';
+import PdfJsService from '../../../infrastructure/services/pdf/pdf.service';
 import { TrainerService } from '../services/trainer/trainer.service';
 import { AdminService } from '../services/admin/admin.service';
-import { TrainerRepositoryImpl } from 'src/infrastructure/repositories/trainer/trainer.repository';
-import { AdminRepositoryImpl } from 'src/infrastructure/repositories/admin/admin.repository';
+import { TrainerRepositoryImpl } from '../../../infrastructure/repositories/trainer/trainer.repository';
+import { AdminRepositoryImpl } from '../../../infrastructure/repositories/admin/admin.repository';
 import { UpdateMemberUseCase } from '../usecases/update-member.usecase';
 
 @Module({

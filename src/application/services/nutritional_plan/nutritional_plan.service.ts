@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateNutritionalPlanDto } from '../../../domain/model/nutritional_plan/create-nutritional_plan.dto';
 import { UpdateNutritionalPlanDto } from '../../../domain/model/nutritional_plan/update-nutritional_plan.dto';
-import { NutritionalPlanRepositoryImpl } from 'src/infrastructure/repositories/nutritional_plan/nutritional_plan.repository';
+import { NutritionalPlanRepositoryImpl } from '../../../infrastructure/repositories/nutritional_plan/nutritional_plan.repository';
 
 @Injectable()
 export class NutritionalPlanService {

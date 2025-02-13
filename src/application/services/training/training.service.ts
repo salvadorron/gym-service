@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Prisma, Training } from "@prisma/client"
-import { TrainingRepositoryImpl } from "src/infrastructure/repositories/training/training.repository";
+import { TrainingRepositoryImpl } from "../../../infrastructure/repositories/training/training.repository";
 
 @Injectable()
 export class TrainingService {

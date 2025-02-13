@@ -4,7 +4,7 @@ import { UserService } from "src/application/services/user/user.service";
 import { CreateNutritionalPlanDto } from "../../../domain/model/nutritional_plan/create-nutritional_plan.dto";
 import { UpdateNutritionalPlanDto } from "../../../domain/model/nutritional_plan/update-nutritional_plan.dto";
 import { NutritionalPlanRepository } from "../../../domain/repositories/nutritional_plan/nutritional_plan.repository";
-import { PrismaService } from "src/infrastructure/services/prisma/prisma.service";
+import { PrismaService } from "../../../infrastructure/services/prisma/prisma.service";
 
 @Injectable()
 export class NutritionalPlanRepositoryImpl implements NutritionalPlanRepository {

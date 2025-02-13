@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Client, Plan, Training } from "@prisma/client"
-import { PlanRepositoryImpl } from "src/infrastructure/repositories/plan/plan.repository";
+import { PlanRepositoryImpl } from "../../../infrastructure/repositories/plan/plan.repository";
 
 
 @Injectable()

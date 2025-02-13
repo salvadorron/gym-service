@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { UserService } from '../services/user/user.service';
-import { BcryptService } from 'src/infrastructure/services/bcrypt/bcrypt.service';
+import { BcryptService } from '../../infrastructure/services/bcrypt/bcrypt.service';
 
 @Injectable()
 export class LoginUserUseCase {

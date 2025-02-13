@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { State } from '@prisma/client';
 import { CreateStateDto } from '../../../domain/model/state/create-state.dto';
-import { StateRepositoryImpl } from 'src/infrastructure/repositories/state/state.repository';
+import { StateRepositoryImpl } from '../../../infrastructure/repositories/state/state.repository';
 
 @Injectable()
 export class StateService {
