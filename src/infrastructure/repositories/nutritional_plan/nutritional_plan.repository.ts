@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from '@nestjs/common';
 import { NutritionalPlan } from "@prisma/client";
 import { UserService } from "../../../application/services/user/user.service";
 import { CreateNutritionalPlanDto } from "../../../domain/model/nutritional_plan/create-nutritional_plan.dto";
@@ -68,7 +68,9 @@ export class NutritionalPlanRepositoryImpl implements NutritionalPlanRepository 
         return this.prisma.nutritionalPlan.findMany()
     }
     async findOne(id: number): Promise<NutritionalPlan> {
-        return this.prisma.nutritionalPlan.findUnique({ where: { id } })
+        const nutritionalPlan = await this.prisma.nutritionalPlan.findFirst({ where: { id } });
+        if(!nutritionalPlan) throw new HttpException('NutritionalPlan not found', 404);
+        return nutritionalPlan;
     }
     async update(id: number, {calories, endDate, planType, startDate, status, breakfast, dinner, lunch, planName, snacks}: UpdateNutritionalPlanDto): Promise<NutritionalPlan> {
         return this.prisma.nutritionalPlan.update({ data: {
