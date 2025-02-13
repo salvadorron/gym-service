@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Header, Param, Patch, Post, Query } from
 import { CreateUserDto } from '../../domain/model/user/create-user.dto';
 import { UserService } from '../services/user/user.service';
 import { LoginUserUseCase } from '../usecases/login-user.usecase';
-import { RegisterMemberDto } from 'src/domain/model/user/register-member.dto';
+import { RegisterMemberDto } from '../../domain/model/user/register-member.dto';
 import { RegisterMemberUseCase } from '../usecases/register-member.usecase';
 import { UpdateMemberUseCase } from '../usecases/update-member.usecase';
 
