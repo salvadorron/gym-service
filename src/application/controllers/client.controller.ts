@@ -67,54 +67,38 @@ export class ClientController {
   @Patch('assign-plan')
   async assignMembership(
     @Body()
-    {
-      id,
-      planId,
-      payment,
-      days,
-      turn,
-    }: {
+    props : {
       id: number;
       planId: number;
-      days: number[];
-      turn: string;
-      payment: { method: string; description: string; amount: number };
+      payment: { method: string; description: string; amount: number, startDate: Date, endDate: Date, status: string };
+      schedule: { day: string, selected: boolean, shift: string }[];
     },
   ) {
-    const days_of_week = {
-      0: 'Monday',
-      1: 'Tuesday',
-      2: 'Wednesday',
-      3: 'Thursday',
-      4: 'Friday',
-    };
 
     const client = await this.clientService.assignMembership(
-      id,
-      planId,
-      payment,
+      props.id,
+      props.planId,
+      props.payment
     );
 
-    console.log(days);
-    const selectedDays = days.map((day, index) =>
-      day === 1 ? days_of_week[index] : undefined,
-    );
-    console.log(selectedDays);
+    const selectedSchedule = props.schedule
+      .filter(day => day.shift)
+      .map(({day, shift}) => ({day, shift}))
 
-    const plan = await this.planService.getPlanById(planId.toString());
+    const plan = await this.planService.getPlanById(props.planId.toString());
 
     plan.trainings.forEach((training) => {
       this.scheduleService.save({
         trainingId: training.id,
-        days: selectedDays,
-        turn: turn,
+        days: selectedSchedule
       });
     });
 
     if (!client.trainer_id) {
-      await this.assignTrainerUseCase.execute({ clientId: id });
+      await this.assignTrainerUseCase.execute({ clientId: props.id });
     }
 
     return client;
   }
+
 }

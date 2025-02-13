@@ -13,7 +13,7 @@ export class PlanRepositoryImpl implements PlanRepository {
 
   async getPlans(): Promise<Plan[]> {
     const plan = await this.prisma.plan.findMany({
-      include: { trainings: true, clients: true },
+      include: { trainings: {include: {excersises: true, schedule: {include: {days: true}}}}, clients: true },
     });
     return plan;
   }
@@ -23,7 +23,7 @@ export class PlanRepositoryImpl implements PlanRepository {
   ): Promise<Plan & { trainings: Training[]; clients: Client[] }> {
     const plan = await this.prisma.plan.findFirst({
       where: { id },
-      include: { trainings: true, clients: true },
+      include: { trainings: {include: {excersises: true, schedule: {include: {days: true}}}}, clients: true },
     });
     if (!plan) throw new HttpException('Plan not found', 404);
     return plan;

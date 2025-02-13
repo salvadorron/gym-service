@@ -10,6 +10,7 @@ export class DayService {
   async save(createDayDto: CreateDayDto): Promise<Day> {
     const day = await this.dayRepository.save({
       day_of_week: createDayDto.dayOfWeek,
+      shift: createDayDto.shift,
       schedule: {
         connect: {
           id: createDayDto.scheduleId,

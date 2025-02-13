@@ -10,19 +10,19 @@ export class ClientRepositoryImpl implements ClientRepository {
   async assignMembership(
     id: number,
     planId: number,
-    payment: { method: string; description: string; amount: number },
+    payment: { method: string; description: string; amount: number, startDate: Date, endDate: Date, status: string },
   ): Promise<Client> {
     const client = await this.prisma.client.update({
       data: {
         plan: { connect: { id: planId } },
         payments: {
           create: {
-            startDate: new Date(),
-            endDate: new Date(),
+            startDate: payment.startDate,
+            endDate: payment.endDate,
             method: payment.method,
             description: payment.description,
             amount: payment.amount,
-            status: 'activo'
+            status: payment.status
           },
         },
       },

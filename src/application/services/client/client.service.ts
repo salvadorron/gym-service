@@ -37,7 +37,7 @@ export class ClientService {
   async assignMembership(
     id: number,
     membershipId: number,
-    payment: { method: string; description: string; amount: number },
+    payment: { method: string; description: string; amount: number, startDate: Date, endDate: Date, status: string },
   ): Promise<Client> {
     return this.clientRepository.assignMembership(id, membershipId, payment);
   }

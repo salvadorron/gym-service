@@ -84,26 +84,23 @@ class PdfJsService implements PDFService {
 
     for (const training of data.trainings) {
       for (const excercise of training.excersises) {
-        const row = doc
-          .table({
-            widths: [6 * pdf.cm, 6 * pdf.cm, 6 * pdf.cm, null],
-            ...border,
-          })
-          .row({ padding });
-        row.cell().text(training.name, { fontSize: 9, textAlign: 'center' });
-        row.cell().text(excercise.name, { fontSize: 9, textAlign: 'center' });
-        row.cell().text(DayTurn[training.schedule.turn], {
-          fontSize: 9,
-          textAlign: 'center',
-        });
-        row
-          .cell()
-          .text(
-            training.schedule.days
-              .map((day) => DayWeek[day.day_of_week])
-              .join(', '),
-            { fontSize: 9, textAlign: 'center' },
-          );
+        for (const day of training.schedule.days) {
+          const row = doc
+            .table({
+              widths: [6 * pdf.cm, 6 * pdf.cm, 6 * pdf.cm, null],
+              ...border,
+            })
+            .row({ padding });
+          row.cell().text(training.name, { fontSize: 9, textAlign: 'center' });
+          row.cell().text(excercise.name, { fontSize: 9, textAlign: 'center' });
+          row.cell().text(day.shift, {
+            fontSize: 9,
+            textAlign: 'center',
+          });
+          row
+            .cell()
+            .text(DayWeek[day.day_of_week], { fontSize: 9, textAlign: 'center' });
+        }
       }
     }
 

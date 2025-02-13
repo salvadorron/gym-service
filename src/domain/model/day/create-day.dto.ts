@@ -8,6 +8,12 @@ export class CreateDayDto {
     example: 'Monday',
   })
   dayOfWeek: string;
+  @IsString()
+  @ApiProperty({
+    description: 'the name of the day',
+    example: 'Morning',
+  })
+  shift: string;
 
   @IsNumber()
   @ApiProperty({

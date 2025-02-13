@@ -116,7 +116,8 @@ model Training {
   name String
   description String
   excersises Excersise[]
-  schedule Schedule?
+  schedule Schedule? @relation(fields: [shedule_id], references: [id])
+  shedule_id Int?
   plan Plan? @relation(fields: [plan_id], references: [id])
   plan_id Int?
 }
@@ -166,11 +167,9 @@ model Attendance {
 
 model Schedule {
   id Int @id @default(autoincrement())
-  training Training @relation(fields: [training_id], references: [id])
-  training_id Int @unique
+  training Training[]
   attendances Attendance[]
   days Day[]
-  turn String?
 }
 
 
@@ -179,6 +178,7 @@ model Day {
   schedule Schedule @relation(fields: [schedule_id], references: [id])
   schedule_id Int
   day_of_week String
+  shift String
 }
 
 

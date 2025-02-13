@@ -2,12 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ArrayMinSize, IsArray, IsEnum, IsString } from 'class-validator';
 
 export class CreateScheduleDto {
-  @IsString()
-  @ApiProperty({
-    description: 'turn of training',
-    example: 'M',
-  })
-  turn: string;
 
   @IsArray({ each: false })
   @ArrayMinSize(1)
@@ -32,15 +26,8 @@ export class CreateScheduleDto {
     example:
       '["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]',
   })
-  days: (
-    | 'Monday'
-    | 'Tuesday'
-    | 'Wednesday'
-    | 'Thursday'
-    | 'Friday'
-    | 'Saturday'
-    | 'Sunday'
-  )[];
+  days: {day: string, shift: string
+  }[];
 
   @IsString()
   @ApiProperty({

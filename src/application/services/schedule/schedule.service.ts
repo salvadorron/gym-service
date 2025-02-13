@@ -11,9 +11,8 @@ export class ScheduleService {
     const schedulePrisma = await this.scheduleRepository.save({
       training: { connect: { id: createScheduleDto.trainingId } },
       days: {
-        create: createScheduleDto.days.map((day) => ({ day_of_week: day })),
-      },
-      turn: createScheduleDto.turn,
+        create: createScheduleDto.days.map((day) => ({ day_of_week: day.day, shift: day.shift })),
+      }
     });
     return schedulePrisma;
   }
