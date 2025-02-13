@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Municipality } from '@prisma/client';
-import { CreateMunicipalityDto } from 'src/domain/model/municipality/create-municipality.dto';
+import { CreateMunicipalityDto } from '../../../domain/model/municipality/create-municipality.dto';
 import { MunicipalityRepositoryImpl } from 'src/infrastructure/repositories/municipality/municipality.repository';
 
 @Injectable()

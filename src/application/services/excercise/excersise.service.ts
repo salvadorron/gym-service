@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Excersise, Prisma } from "@prisma/client"
-import { CreateExcersiseDto } from "src/domain/model/excersise/create-excercise.dto";
+import { CreateExcersiseDto } from "../../../domain/model/excersise/create-excercise.dto";
 import { ExcersiseRepositoryImpl } from "src/infrastructure/repositories/excercise/excersise.repository";
 
 @Injectable()

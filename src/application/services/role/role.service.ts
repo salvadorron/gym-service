@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Role } from '@prisma/client';
-import { CreateRoleDto } from 'src/domain/model/role/create-role.dto';
+import { CreateRoleDto } from '../../../domain/model/role/create-role.dto';
 import { RoleRepositoryImpl } from 'src/infrastructure/repositories/role/role.repository';
 
 @Injectable()

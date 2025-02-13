@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../services/user/user.service';
 import { ClientService } from '../services/client/client.service';
-import { RegisterUserClientDto } from 'src/domain/model/client/register-userclient.dto';
+import { RegisterUserClientDto } from '../../domain/model/client/register-userclient.dto';
 
 @Injectable()
 export class RegisterUserClientUseCase {

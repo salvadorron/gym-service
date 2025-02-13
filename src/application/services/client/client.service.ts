@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { Client, Prisma } from '@prisma/client';
-import { CreateClientDto } from 'src/domain/model/client/create-client.dto';
+import { CreateClientDto } from '../../../domain/model/client/create-client.dto';
 import { ClientRepositoryImpl } from 'src/infrastructure/repositories/client/client.repository';
 import { UserService } from '../user/user.service';
 import PdfJsService from 'src/infrastructure/services/pdf/pdf.service';

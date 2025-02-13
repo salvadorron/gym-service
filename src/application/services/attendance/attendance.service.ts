@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Attendance } from '@prisma/client';
-import { CreateAttendenceDto } from 'src/domain/model/attendence/create-attendence.dto';
-import { AttendanceRepositoryImpl } from 'src/infrastructure/repositories/attendance/attendance.repository';
+import { CreateAttendenceDto } from '../../../domain/model/attendence/create-attendence.dto';
+import { AttendanceRepositoryImpl } from '../../../infrastructure/repositories/attendance/attendance.repository';
 
 @Injectable()
 export class AttendanceService {

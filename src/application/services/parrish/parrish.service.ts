@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Parrish } from '@prisma/client';
-import { CreateParrishDto } from 'src/domain/model/parrish/create-parrish.dto';
+import { CreateParrishDto } from '../../../domain/model/parrish/create-parrish.dto';
 import { ParrishRepositoryImpl } from 'src/infrastructure/repositories/parrish/parrish.repository';
 
 @Injectable()

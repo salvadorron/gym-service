@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { Prisma, Municipality } from "@prisma/client";
 import { PrismaService } from "../../services/prisma/prisma.service";
 import { MunicipalityRepository } from "../../../domain/repositories/municipality/municipality.repository";
-import { CreateMunicipalityDto } from "src/domain/model/municipality/create-municipality.dto";
+import { CreateMunicipalityDto } from "../../../domain/model/municipality/create-municipality.dto";
 
 @Injectable()
 export class MunicipalityRepositoryImpl implements MunicipalityRepository {

@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { Prisma, Parrish } from "@prisma/client";
 import { PrismaService } from "../../services/prisma/prisma.service";
 import { ParrishRepository } from "../../../domain/repositories/parrish/parrish.repository";
-import { CreateParrishDto } from "src/domain/model/parrish/create-parrish.dto";
+import { CreateParrishDto } from "../../../domain/model/parrish/create-parrish.dto";
 
 @Injectable()
 export class ParrishRepositoryImpl implements ParrishRepository {

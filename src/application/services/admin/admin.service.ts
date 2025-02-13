@@ -1,8 +1,8 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { Admin } from '@prisma/client';
 import { UserService } from '../user/user.service';
-import { AdminRepositoryImpl } from 'src/infrastructure/repositories/admin/admin.repository';
-import { CreateAdminDto } from 'src/domain/model/admin/create-admin.dto';
+import { AdminRepositoryImpl } from '../../../infrastructure/repositories/admin/admin.repository';
+import { CreateAdminDto } from '../../../domain/model/admin/create-admin.dto';
 
 @Injectable()
 export class AdminService {

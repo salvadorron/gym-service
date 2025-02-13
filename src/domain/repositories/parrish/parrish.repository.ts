@@ -1,5 +1,5 @@
 import { Parrish } from 'prisma/prisma-client'
-import { CreateParrishDto } from 'src/domain/model/parrish/create-parrish.dto';
+import { CreateParrishDto } from '../../../domain/model/parrish/create-parrish.dto';
 export interface ParrishRepository {
   create(parrish: Parrish): Promise<Parrish>;
   findById(id: string): Promise<Parrish | null>;

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Schedule } from '@prisma/client';
-import { CreateScheduleDto } from 'src/domain/model/schedule/create-schedule.dto';
+import { CreateScheduleDto } from '../../../domain/model/schedule/create-schedule.dto';
 import { ScheduleRepositoryImpl } from 'src/infrastructure/repositories/schedule/schedule.repository';
 
 @Injectable()

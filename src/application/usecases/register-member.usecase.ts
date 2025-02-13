@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../services/user/user.service';
 import { ClientService } from '../services/client/client.service';
-import { RegisterMemberDto } from 'src/domain/model/user/register-member.dto';
+import { RegisterMemberDto } from '../../domain/model/user/register-member.dto';
 import { TrainerService } from '../services/trainer/trainer.service';
 import { AdminService } from '../services/admin/admin.service';
 

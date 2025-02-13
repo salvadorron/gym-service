@@ -1,5 +1,5 @@
 import { Prisma, Municipality } from "@prisma/client";
-import { CreateMunicipalityDto } from "src/domain/model/municipality/create-municipality.dto";
+import { CreateMunicipalityDto } from "../../../domain/model/municipality/create-municipality.dto";
 
 export interface MunicipalityRepository {
     create(data: Prisma.MunicipalityCreateInput): Promise<Municipality>
