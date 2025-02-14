@@ -44,23 +44,23 @@ model User {
   name String 
   last_name String
   age Int
-  role Role? @relation(fields: [role_id], references: [id])
+  role Role? @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   role_id String
   weight Int
   height Int
   gender GENDER @default(MALE)
   medical_conditions String?
-  state State @relation(fields: [state_id], references: [id])
+  state State @relation(fields: [state_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   state_id Int
-  municipality Municipality @relation(fields: [municipality_id], references: [id])
+  municipality Municipality @relation(fields: [municipality_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   municipality_id Int
-  parrish Parrish @relation(fields: [parrish_id], references: [id])
+  parrish Parrish @relation(fields: [parrish_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   parrish_id Int
   city String
   zip_code String
   address String
   nutritional_plan_id Int?
-  nutritional_plan NutritionalPlan? @relation(fields: [nutritional_plan_id], references: [id])
+  nutritional_plan NutritionalPlan? @relation(fields: [nutritional_plan_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   client Client?
   trainer Trainer?
   admin Admin?
@@ -69,20 +69,20 @@ model User {
 model Client {
   id Int @default(autoincrement()) @id
   training_progress Int @default(0)
-  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user_id Int @unique
-  plan Plan? @relation(fields: [plan_id], references: [id])
+  plan Plan? @relation(fields: [plan_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   plan_id Int?
   payments Payment[]
   attendances Attendance[]
-  trainer Trainer? @relation(fields: [trainer_id], references: [id], onDelete: Cascade)
+  trainer Trainer? @relation(fields: [trainer_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   trainer_id Int?
 }
 
 model Trainer {
   id Int @default(autoincrement()) @id
   speciality String
-  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user_id Int @unique
   certificates Certificate[]
   clients Client[]
@@ -96,7 +96,7 @@ model Certificate {
 
 model Admin {
   id Int @default(autoincrement()) @id
-  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user_id Int @unique
 }
 
@@ -116,9 +116,9 @@ model Training {
   name String
   description String
   excersises Excersise[]
-  schedule Schedule? @relation(fields: [shedule_id], references: [id])
+  schedule Schedule? @relation(fields: [shedule_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   shedule_id Int?
-  plan Plan? @relation(fields: [plan_id], references: [id])
+  plan Plan? @relation(fields: [plan_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   plan_id Int?
 }
 
@@ -144,7 +144,7 @@ model Excersise {
 
 model Payment {
   id Int @id @default(autoincrement())
-  client Client @relation(fields: [client_id], references: [id])
+  client Client @relation(fields: [client_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   client_id Int
   amount Decimal
   method String
@@ -157,9 +157,9 @@ model Payment {
 
 model Attendance {
   id Int @id @default(autoincrement())
-  client Client @relation(fields: [client_id], references: [id])
+  client Client @relation(fields: [client_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   client_id Int
-  schedule Schedule @relation(fields: [schedule_id], references: [id])
+  schedule Schedule @relation(fields: [schedule_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   schedule_id Int
   attendance_date DateTime @db.Date
   status Boolean
@@ -175,7 +175,7 @@ model Schedule {
 
 model Day {
   id Int @id @default(autoincrement())
-  schedule Schedule @relation(fields: [schedule_id], references: [id])
+  schedule Schedule @relation(fields: [schedule_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   schedule_id Int
   day_of_week String
   shift String
@@ -186,7 +186,7 @@ model Municipality {
   id Int @id @default(autoincrement())
   name String
   parrishes Parrish[]
-  state State @relation(fields: [state_id], references: [id])
+  state State @relation(fields: [state_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   state_id Int
   users User[]
 }
@@ -194,7 +194,7 @@ model Municipality {
 model Parrish {
   id Int @id @default(autoincrement())
   name String
-  municipality Municipality @relation(fields: [municipality_id], references: [id])
+  municipality Municipality @relation(fields: [municipality_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   municipality_id Int
   users User[]
 }
